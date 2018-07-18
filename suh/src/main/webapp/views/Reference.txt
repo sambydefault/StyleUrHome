@@ -1,0 +1,47 @@
+141201010016297
+
+<div class="col-md-4">
+						<h5>Bedrooms</h5>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="br1" ng-click="check(br1)"
+								id="checkbox1"> <label for="checkbox1"> 1 </label>
+						</div>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="br2" ng-click="check(br2)"
+								id="checkbox2"> <label for="checkbox2"> 2 </label>
+						</div>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="br3"  ng-click="check(br3)"
+								id="checkbox3"> <label for="checkbox3"> 3 </label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<h5>Balconies</h5>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px; ">
+							<input type="checkbox" ng-model="ba1" ng-click="check(ba1)"
+								id="checkbox1"> <label for="checkbox1"> 1 </label>
+						</div>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="ba2" ng-click="check(ba2)"
+								id="checkbox2"> <label for="checkbox2"> 2 </label>
+						</div>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="ba3"  ng-click="check(ba3)"
+								id="checkbox3"> <label for="checkbox3"> 3 </label>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<h5>Toilets</h5>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="tl1" ng-click="check(tl1)"
+								id="checkbox1"> <label for="checkbox1"> 1 </label>
+						</div>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="tl2" ng-click="check(tl2)"
+								id="checkbox2"> <label for="checkbox2"> 2 </label>
+						</div>
+						<div class="checkbox abc-checkbox" style="display:inline; padding: 20px;">
+							<input type="checkbox" ng-model="tl3"  ng-click="check(tl3)"
+								id="checkbox3"> <label for="checkbox3"> 3 </label>
+						</div>
+					</div>

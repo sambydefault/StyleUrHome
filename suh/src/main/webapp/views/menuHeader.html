@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default navbar-fixed-top"
+	style="background-color: #3e3f3a; margin: 0px; padding: 0px;">
+	<div class="container" style="width: 100%">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header page-scroll">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand page-scroll" href="/">StyleUrHome</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="hidden" ng-if="login.loginCheck == 0"><a href="#page-top"></a></li>
+				<li ng-if="login.loginCheck == 0"><a href="#services" prevent-default="" scroll-to="services"
+					data-toggle="tab">Services</a></li>
+				<li ng-if="login.loginCheck == 0"><a href="#design" prevent-default=""
+					scroll-to="design" data-toggle="tab">Design</a></li>
+				<li ng-if="login.loginCheck == 0"><a href="#about" prevent-default="" scroll-to="about"
+					data-toggle="tab">About</a></li>
+				<li ng-if="login.loginCheck == 0"><a href="#team" prevent-default="" scroll-to="team"
+					data-toggle="tab">Team</a></li>
+				<li ng-if="login.loginCheck == 0"><a href="#contact" prevent-default="" scroll-to="contact"
+					data-toggle="tab">Contact</a></li>
+				<li style="padding-top: 5px;"><button
+						ng-if="login.loginCheck == 0" role="button"
+						class="btn btn-md btn-warning" data-toggle="modal"
+						data-target="#loginModal" href="#loginModal">
+						<b>Login</b>
+					</button></li>
+				<li style="padding-top: 5px; padding-left: 10px;"><button
+						ng-if="login.loginCheck == 0" role="button"
+						class="btn btn-md btn-warning" data-toggle="modal"
+						data-target="#signupModal" href="#signupModal">
+						<b>Signup</b>
+					</button></li>
+				<li class="dropdown" ng-if="login.loginCheck == 1"><a href=""
+					class="dropdown-toggle" data-toggle="dropdown">Welcome
+						{{login.userName}} <span class="caret"></span>
+				</a>
+					<ul class="dropdown-menu" role="menu"
+						style="background-color: #fed136; border-radius: 5px; left: 0px;">
+						<li><a href="" ng-click="logout()" style="color: white;">Logout</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+</nav>

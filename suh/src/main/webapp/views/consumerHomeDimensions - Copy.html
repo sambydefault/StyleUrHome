@@ -1,0 +1,417 @@
+<div
+	style="background-color: lightGoldenrodYellow; height: 600px; padding-top: 50px;">
+	<div style="width: 100%; padding-left: 5px; padding-right: 10px;">
+		<br>
+		<div class="col-md-12">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="input-group">
+					<span class="input-group-btn">
+						<button class="btn btn-custom-grey" type="button">Please
+							enter the built up area</button>
+					</span><input type="text" class="form-control" ng-model="parent.builtArea">
+					<span class="input-group-btn">
+						<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+					</span>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+		<br> <br>
+		<hr>
+
+		<div class="row"
+			style="text-align: center; margin: 0px; max-height: 100%;">
+			<div class="col-md-3" style="padding-left: 5px;">
+				<div class="col-md-1">
+					<div class="col-md-2"></div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-custom-grey" type="button">Choose
+									number of Bedrooms</button>
+							</span>
+							<div class="dropdown">
+								<button class="btn btn-custom-lightblue dropdown-toggle"
+									type="button" value="bedValue" data-toggle="dropdown">
+									Bedrooms <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" dd-menu value="bedValue"
+									ng-model="bedValue" role="menu">
+									<li><a href="">0</a></li>
+									<li><a href="">1</a></li>
+									<li><a href="">2</a></li>
+									<li><a href="">3</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-md-1">
+					<div class="col-md-1"></div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-custom-grey" type="button">Choose
+									number of Kitchens</button>
+							</span>
+							<div class="dropdown">
+								<button class="btn btn-custom-lightblue dropdown-toggle"
+									type="button" data-toggle="dropdown">
+									Kitchens <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" dd-menu value="kitValue"
+									ng-model="kitValue" role="menu">
+									<li><a href="">0</a></li>
+									<li><a href="">1</a></li>
+									<li><a href="">2</a></li>
+									<li><a href="">3</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-md-1">
+					<div class="col-md-1"></div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-custom-grey" type="button">Choose
+									number of Toilets</button>
+							</span>
+							<div class="dropdown">
+								<button class="btn btn-custom-lightblue dropdown-toggle"
+									type="button" data-toggle="dropdown">
+									Toilets <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" dd-menu value="tlValue"
+									ng-model="tlValue" role="menu">
+									<li><a href="">0</a></li>
+									<li><a href="">1</a></li>
+									<li><a href="">2</a></li>
+									<li><a href="">3</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="col-md-1">
+					<div class="col-md-1"></div>
+					<div class="col-md-4">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-custom-grey" type="button">Choose
+									number of Living</button>
+							</span>
+							<div class="dropdown">
+								<button class="btn btn-custom-lightblue dropdown-toggle"
+									type="button" data-toggle="dropdown">
+									Living <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" dd-menu value="livValue"
+									ng-model="livValue" role="menu">
+									<li><a href="">0</a></li>
+									<li><a href="">1</a></li>
+									<li><a href="">2</a></li>
+									<li><a href="">3</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4"></div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<hr>
+
+		<!--   **************************BEDROOM DIMENSIONS ************************** -->
+		<div class="row">
+			<div class="col-md-3" ng-if="bedValue > 0">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Bedroom 1 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.br1Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.br1Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.br1Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="bedValue > 1">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Bedroom 2 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.br2Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.br2Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.br2Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="bedValue > 2">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Bedroom 3 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.br3Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.br3Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.br3Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--   **************************KITCHEN DIMENSIONS **************************  -->
+			<div class="col-md-3" ng-if="kitValue > 0">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Kitchen 1 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.kit1Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.kit1Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.kit1Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="kitValue > 1">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Kitchen 2 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.kit2Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.kit2Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.kit2Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="kitValue > 2">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Balcony 3 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.kit3Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.kit3Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.kit3Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- **************************** TOILETS DIMENSIONS **************************-->
+			<div class="col-md-3" ng-if="tlValue > 0">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Toilet 1 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.tl1Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.tl1Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.tl1Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="tlValue > 1">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Toilet 2 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.tl2Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.tl2Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.tl2Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="tlValue > 2">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Toilet 3 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.tl3Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.tl3Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.tl3Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- **************************** Living DIMENSIONS **************************-->
+			<div class="col-md-3" ng-if="livValue > 0">
+				<div class="col-md-12">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Living 1 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="number"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.parent.liv1Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.parent.liv1Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.parent.liv1Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="livValue > 1">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Living 2 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.liv2Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.liv2Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.liv2Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<hr>
+				<div class="col-md-12" ng-if="livValue > 2">
+					<div class="col-md-3">
+						<label style="font-size: 12px;">Living 3 : </label>
+					</div>
+					<div class="col-md-9">
+						<div class="input-group">
+							<span class="input-group-btn"> <input type="text"
+								style="border-radius: 5px 0px 0px 5px;" placeholder="L"
+								class="form-control" ng-model="parent.liv3Length">
+							</span> <span class="input-group-btn"><input type="text"
+								placeholder="B" class="form-control" ng-model="parent.liv3Breadth"></span><span
+								class="input-group-btn"> <input type="text"
+								placeholder="H" class="form-control" ng-model="parent.liv3Height">
+							</span> <span class="input-group-btn">
+								<button class="btn btn-custom-lightblue" type="button">Sq.Ft</button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+	</div>
+
+	<div class="col-md-12">
+		<div class="col-md-2">
+			<a class="btn btn-sm btn-custom-red" href="#/consumerHomeDesign">
+				<i class="fa fa-chevron-left" aria-hidden="true"></i> Choose Home
+				type
+			</a>
+		</div>
+		<div class="col-md-8"></div>
+		<div class="col-md-2">
+			<!--  ng-if="bedValue > 0 && kitValue > 0"> -->
+			<a class="btn btn-sm btn-custom-red" ng-click="getAllRoomDesigns()"
+				href="">Start Design <i
+				class="fa fa-chevron-right"></i>
+			</a>
+		</div>
+	</div>
+</div>

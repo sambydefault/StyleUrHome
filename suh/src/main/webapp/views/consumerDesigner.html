@@ -1,0 +1,178 @@
+<!-- top navigation panel -->
+<!-- <div class="topnav">Header panel Items</div> -->
+<!-- side bar -->
+<div class="container" style="width: 100%; height: 100%;"
+	ng-init="fetchLocalStorageItems()">
+	<div class="col-md-4">
+		<div
+			style="margin-top: 50px; background: #fff; height: 800px; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;">
+			<div class="col-md-12"
+				style="-webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; text-align: center;">
+				<div class="col-md-12 inner-sidebar" style="overflow-y: scroll;">
+					<div class="col-md-12" style="text-align: center;">
+						<div class="col-md-12"
+							style="background-color: cadetBlue; border-radius: 3px; color: white;">
+							<small><b> STEP 1: Choose your room for design </b></small>
+						</div>
+					</div>
+					<br>
+					<div class="col-md-12">
+						<div class="col-md-4 image" ng-repeat="bedroom in bedroomList">
+							<small><b>Bedroom {{$index + 1}} :</b> {{bedroom.length}}
+								x {{bedroom.breadth}} x {{bedroom.height}}</small> <a href=""
+								onclick="event.preventDefault()"><img title="Click hereeeee"
+								id="{{bedroom.roomDetailsID}}" src=""
+								ng-click="setDesignForSelectedRoom($event)"
+								class="img img-rounded" border="1px"
+								alt="Bedroom {{ $index + 1}}" width="100%" height="100%"
+								style="min-height: 100px; min-width: 100px; background-color: #f1f1f1"></a>
+							<small id="A{{bedroom.roomDetailsID}}" class="h2Text">Click here!</small>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-4 image" ng-repeat="kitchen in kitchenList">
+							<small><b>Kitchen {{$index + 1}} :</b> {{kitchen.length}}
+								x {{kitchen.breadth}} x {{kitchen.height}}</small> <a href=""
+								onclick="event.preventDefault()"><img
+								id="{{kitchen.roomDetailsID}}" src=""
+								ng-click="setDesignForSelectedRoom($event)"
+								class="img img-rounded" border="1px"
+								alt="Kitchen {{ $index + 1}}" width="100%" height="100%"
+								style="min-height: 100px; min-width: 100px; background-color: #f1f1f1"></a>
+							<small id="A{{bedroom.roomDetailsID}}" class="h2Text">Click here!</small>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-4 image" ng-repeat="toilet in toiletList">
+							<small><b>Toilet {{$index + 1}} :</b> {{toilet.length}} x
+								{{toilet.breadth}} x {{toilet.height}}</small> <a href=""
+								onclick="event.preventDefault()"><img
+								id="{{toilet.roomDetailsID}}" src=""
+								ng-click="setDesignForSelectedRoom($event)"
+								class="img img-rounded" border="1px"
+								alt="Toilet {{ $index + 1}}" width="100%" height="100%"
+								style="min-height: 100px; min-width: 100px; background-color: #f1f1f1"></a>
+							<small id="A{{bedroom.roomDetailsID}}" class="h2Text">Click here!</small>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="col-md-4 image" ng-repeat="living in livingroomList">
+							<small><b>Living {{$index + 1}} :</b> {{living.length}} x
+								{{living.breadth}} x {{living.height}}</small> <a href=""
+								onclick="event.preventDefault()"><img
+								id="{{living.roomDetailsID}}" src=""
+								ng-click="setDesignForSelectedRoom($event)"
+								class="img img-rounded" border="1px"
+								alt="Living {{ $index + 1}}" width="100%" height="100%"
+								style="min-height: 100px; min-width: 100px; background-color: #f1f1f1"></a>
+							<small id="A{{bedroom.roomDetailsID}}" class="h2Text">Click here!</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- main content -->
+	<div class="col-md-8 designcontent ">
+		<div
+			style="padding-left: 1px; padding-right: 2px; margin-top: 52px; background: #fff; height: 800px; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px;">
+			<div class="col-md-12 content-header">
+				<div class="row-fluid">
+					<div class="col-lg-12 col-md-10"
+						style="background-color: cadetBlue; padding-left: 35%; border-radius: 3px; color: white;">
+						<small><b>STEP 2: Choose the design from our
+								collections</b></small>
+					</div>
+					<div class="col-lg-12 col-md-10 ">
+						<div class="cover-container">
+							<!-- START PANEL -->
+							<div class="cover-item" id="myImg1"
+								ng-repeat="roomDesigns in roomDesignsList | filter: {'description' : description}">
+								<a href="" ng-click="selectedDesign(roomDesigns.id)"><img
+									alt="" width="100%" height="100%" style="padding: 1%;"
+									class="img img-rounded"
+									ng-src="images/designs/{{roomDesigns.id}}.jpg"></a>
+							</div>
+							<!-- END PANEL -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div id="loadimgdiv"
+					style="background-color: cadetBlue; padding-left: 40%; border-radius: 3px; color: white;">
+					<small><b>Be an Architect</b></small>
+				</div>
+				<div class="col-md-12">
+					<div class="col-md-7" style="padding: 0%">
+						<a href=""><img alt="" alt="" id="imageSelected" width="100%"
+							height="100%"
+							style="padding: 1%; min-height: 300px; min-width: 300px;" img
+							img-rounded" src=""></a>
+					</div>
+					<div class="col-md-5" style="padding: 1%"
+						ng-if="designRelatedInfo == 1">
+						<div class="input-group">
+							<small><b>Design By :</b> VTech<br> </small>
+						</div>
+						<br>
+						<div class="col-md-12">
+							<div class="col-md-3">
+								<button class="btn btn-xs btn-custom-orange"
+									ng-model="designBreakup" ng-click="designBreak()">Design
+									Split</button>
+							</div>
+							<div class="col-md-1"></div>
+							<div class="col-md-3">
+								<button class="btn btn-xs btn-custom-orange pull-left"
+									type="submit" id="selectedDesignID" ng-model="designBreakup"
+									ng-click="saveDesignForSelectedRoom($event)">Save
+									Design</button>
+							</div>
+							<div class="col-md-1"></div>
+							<div class="col-md-3">
+								<button class="btn btn-xs btn-custom-orange pull-left"
+									type="submit" id="selectedDesignID" ng-model="designBreakup"
+									ng-click="editDesignForSelectedRoom($event)">Edit
+									Design</button>
+							</div>
+							<div class="col-md-1"></div>
+						</div>
+						<br>
+						<div class="input-group" ng-if="designBreakup == 1">
+							<br>
+							<table
+								class="table table-condensed table-responsive table-striped"
+								style="font-size: 12px;">
+								<tr>
+									<th>Furniture</th>
+									<th>Dimension</th>
+									<th>Color</th>
+									<th>Cost(Rs)</th>
+								</tr>
+								<tr ng-repeat="breakup in designBreakUpList">
+									<td data-th="Furniture">{{breakup.name}}</td>
+									<td data-th="Dimension">{{breakup.length}} x
+										{{breakup.width}} x {{breakup.height}}</td>
+									<td data-th="Color">{{breakup.color}}</td>
+									<td data-th="Cost">{{breakup.price}}</td>
+								</tr>
+							</table>
+							<label class="pull-right">Total : Rs.{{totalCost}}</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="col-md-2"></div>
+				<div class="col-md-8">
+					<button class="btn btn-md btn-primary" ng-model="submitDesign"
+						id="submitDesign" disabled style="width: 50%;" ng-click="submitDesign()">
+						Submit Design</button>
+				</div>
+				<div class="col-md-2"></div>
+			</div>
+
+		</div>
+	</div>
+</div>
