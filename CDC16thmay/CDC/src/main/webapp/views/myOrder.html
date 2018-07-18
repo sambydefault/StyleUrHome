@@ -1,0 +1,94 @@
+<div class="row" ng-if="individualOrderDetail != ''"
+	style="padding-left: 20px; padding-right: 30px; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato;">
+	<div class="appointment-font"
+		ng-repeat="elements in individualOrderDetail" align="center">
+		<form>
+			<table>
+				<tbody>
+					<tr>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+						<td data-th="Service">
+							<div class="row">
+								<div class="col-sm-3">
+									<img ng-src="images/{{elements.service.productImage}}"
+										width="100%" height="100%" alt="..."
+										class="img-responsive img-rounded" />
+								</div>
+								<div class="col-md-9">
+									<div>Service Description :
+										{{elements.service.productDescription}}</div>
+									<div>Category : {{elements.service.productName}}</div>
+									<div>Requestor : {{elements.user.userEmail}}</div>
+									<div ng-show="elements.orderStatus != null">Order Status
+										: {{elements.orderStatus.statusName}}</div>
+									<div ng-show="elements.orderStatus == null">Order Status
+										: In Progress</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="container"
+				ng-if="orderVendorApprovalDetail != '' && serviceVendorActionExist != 0">
+				<div style="color: purple; text-align: center;">
+					<h4>Vendors who are interested..</h4>
+				</div>
+				<table id="cart"
+					class="table table-hover table-condensed appointment-header"
+					style="border: 1px solid lightgray;">
+					<thead style="background-color: #f5f5f5;">
+						<tr>
+							<th style="width: 10%">Service Name</th>
+							<th style="width: 10%">Vendor Info</th>
+							<th style="width: 10%">Vendor Location</th>
+							<th style="width: 10%">Product Price</th>
+							<th style="width: 10%">Action</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="elements1 in orderVendorApprovalDetail">
+						<tr ng-repeat="elements2 in elements1.vendorOrderAction"
+							ng-show="elements2 != null" style="line-height: 100px;">
+							<td>{{elements1.service.productName}}</td>
+							<td ng-show="elements1.choose_status == 'Approved'">Selected</td>
+							<td data-th="VendorEmail"><label>{{elements2.vendor.vendorEmail}}</label></td>
+							<td data-th="VendorCategory"><label>{{elements1.service.productName}}</label></td>
+							<td data-th="serviceCost"><label>{{elements1.service.productPrice|
+									currency: "": 2}}</label></td>
+							<td ng-show="elements2.choose_status != 'Approved'"><button
+									data-toggle="tab" id="myOrder" prevent-default=""
+									scroll-to="orderfulldetails"
+									ng-click="chooseVendor(elements1, elements2)"
+									class="btn btn-sm btn-warning">
+									<i class="fa fa-thumbs-up"></i> Choose
+								</button></td>
+							<td ng-show="elements2.choose_status == 'Approved'">Selected</td>
+						</tr>
+					</tbody>
+				</table>
+				<div ng-show="elements.orderStatus.statusId == null">
+					<button type="submit" class="btn btn-sm btn-primary"
+						ng-click="getservices()">Back</button>
+					<button type="submit" class="btn btn-sm btn-primary"
+						ng-click="submitServiceOrder(elements)">Submit</button>
+				</div>
+			</div>
+			<div ng-if="serviceVendorActionExist == 0">
+				<div style="color: purple; text-align: center;">
+					<h4>No Potential Vendors.</h4>
+				</div>
+
+				<button type="submit" class="btn btn-sm btn-primary"
+					ng-click="getservices()">Back to Orders</button>
+			</div>
+			<div ng-show="elements.orderStatus.statusId != null">
+				<button type="submit" class="btn btn-sm btn-primary"
+					ng-click="getservices();">Go To Orders</button>
+			</div>
+		</form>
+	</div>
+</div>
+<br />
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>

@@ -1,0 +1,271 @@
+<div class="container" ng-init="getServicesCustom();">
+	<div>
+		<img style="width: 100%;"
+			ng-src="http://www.oliverwyman.com/content/dam/oliver-wyman/v2/expertise/Business-Services-1920x570.jpg" />
+	</div>
+	
+	<div class="appointment text-gradient appointment-font"
+		style="float: left;">
+		<fieldset>
+			<legend class="appointment-header"> Avail Service </legend>
+			<form ng-submit="bookService()" novalidate name="creditcardform">
+				<div class="form-group has-feedback"
+					ng-class="{ 'has-error': creditcardform.selectedCategory.$invalid }">
+					<label class="control-label">Search Category : </label> <select
+						ng-model="selectedCategory"
+						ng-change="selectVendorCustom(selectedCategory)"
+						class="form-control" required>
+						<option class="service-dropdown" value="">Select Category</option>
+						<option class="service-dropdown" ng-repeat="elements in services"
+							value="{{elements.productSubCategory}}">{{elements.productSubCategory}}</option>
+					</select>
+				</div>
+				<div>
+					<span class="form-group" id="sandbox-container"> <label
+						for="date">Date</label> <input class="form-control" id="date"
+						type="text" ng-model="parent.servicingDate" required />
+					</span> <span> <label for="timeslot">Choose a time slot</label> <select
+						class="form-control" id="timeslot" ng-model="timeslot"
+						style="height: 32px; padding: 0px;">
+							<option>9-12 AM</option>
+							<option>12-3 PM</option>
+							<option>3-6 PM</option>
+							<option>6-9 PM</option>
+					</select>
+					</span>
+				</div>
+				<div class="form-group has-feedback"
+					ng-class="{'has-error': creditcardform.comment.$invalid}">
+					<label for="exampleTextarea">Additional Comments</label>
+					<textarea class="form-control" id="exampleTextarea"
+						ng-model="comment" rows="3" required></textarea>
+				</div>
+				<div class="form-group"
+					ng-class="{'has-error': creditcardform.emailId.$invalid}">
+					<label for="exampleInputEmail1">Email address</label> <input
+						type="email" class="form-control" id="exampleInputEmail1"
+						aria-describedby="emailHelp" placeholder="Enter email"
+						ng-model="emailId" required> <small id="emailHelp"
+						class="form-text text-muted">We'll never share your email
+						with anyone else.</small>
+				</div>
+				<div class="form-group"
+					ng-class="{'has-error': creditcardform.phoneNumber.$invalid}">
+					<label for="phonenumber">Phone Number</label> <input type="text"
+						class="form-control" id="phonenumber" aria-describedby="emailHelp"
+						placeholder="phone number" ng-model="phoneNumber" required>
+				</div>
+				<button type="submit" ng-disabled="creditcardform.$invalid">Quote</button>
+			</form>
+		</fieldset>
+
+	</div>
+
+	<div class="collapse navbar-collapse"
+					id="navbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#myorder" data-toggle="tab"
+							id="myorder" prevent-default="" scroll-to="myorder"
+							ng-click="getVendorServiceSubmitted();">My Service Orders</a></li>
+						<li></li>
+						</ul>
+						</div>
+												
+	<div class="vendordetails text-gradient" style="float: right;">
+		<fieldset>
+			<legend class="appointment-header">
+				Vendor Info<img ng-src="" />
+			</legend>
+		</fieldset>
+		<div ng-if="showServicesCustom == 1">
+			<!-- <table class="table table-hover table-condensed">
+				<thead>
+					<tr>
+						<th style="width: 15%">Service</th>
+						<th style="width: 15%">Service Description</th>
+						<th style="width: 15%">Service Name</th>
+						<th style="width: 10%">Rating</th>
+						<th style="width: 15%">Vendor Location</th>
+						<th style="width: 15%">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="elements in serviceVendor" style="line-height: 10%">
+
+						<td>
+							<div class="row">
+								<img ng-src="images/{{elements.product.productImage}}"
+									width="60%" height="60%" alt="..."
+									class="img-responsive img-rounded" />
+							</div>
+						</td>
+
+						<td data-th="productid">{{elements.product.productid}}
+					</td>
+						<td data-th="productName">{{elements.product.productDescription}}
+						</td>
+
+						<td data-th="productName">{{elements.product.productName}}</td>
+						<td>
+							<div class="row" ng-if="elements.vendorRating == 0">
+								<div class="col-sm-8">
+									<label></label>
+								</div>
+							</div>
+							<div class="row" ng-if="elements.vendorRating != 0">
+								<div class="col-sm-8">
+									<label>{{elements.vendorRating}}</label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="row">
+								<div class="col-sm-8" ng-show="elements.vendorLocation != null">
+									<label>{{elements.vendorLocation}}</label>
+								</div>
+							</div>
+						</td>
+						<td><div class="row">
+													<button class="btn btn-md btn-info"
+														ng-click="updateReviews(elements.reviewId)"
+														data-dismiss="modal">Create Quote</button>													
+												</div></td>
+
+
+						<td>
+
+							<div>
+								<button class="btn btn-sm btn-custom-gold" ng-click=""
+									data-toggle="modal"
+									data-target="#productPrice_{{elements.product.productid}}">
+									<b>Quote</b>&nbsp;&nbsp;<i class="fa fa-md fa-inr"> </i>
+								</button>
+							</div>
+							<div class="modal fade"
+								id="productPrice_{{elements.product.productid}}" tabindex="-1"
+								role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content"
+										style="background-color: #53657d; color: white;">
+										<div class="modal-header">
+											<div class="modal-title" id="myModalLabel"
+												style="text-align: center">
+												<div class="col-md-4" style="text-align: left">
+													<b style="margin-left: 5px;">{{elements.product.productName}}</b>
+												</div>
+												<div class="col-md-8" style="text-align: right;">
+													<b style="margin-right: 5px;"><b><i
+															class="fa fa-inr"></i>
+															{{elements.product.productMinPrice}}</b> - <b><i
+															class="fa fa-inr"></i>
+															{{elements.product.productMaxPrice}}</b></b>
+												</div>
+												<br />
+											</div>
+										</div>
+										<div class="modal-body"
+											style="background-color: #53657d; color: white;">
+											<div class="row">
+												<div class="col-md-4">
+													<label class="control-label">Quote your price</label>
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="fa fa-inr fa"></i></span> <input type="text"
+															class="form-control" required="required"
+															ng-model="parent.priceQuote"
+															ng-change="successRateCheck(); successRate = 1;">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label class="control-label">Days</label> <input
+														type="text" class="form-control" required="required"
+														ng-model="parent.days">
+												</div>
+												<div class="col-md-2">
+													<label class="control-label">Hours</label> <input
+														type="text" class="form-control" required="required"
+														ng-model="parent.hours">
+												</div>
+												<div class="col-md-4">
+													<label class="control-label">Service Review </label><br />
+													<label> <span class="fa fa-star"
+														style="color: yellow"></span><span class="fa fa-star"
+														style="color: yellow"></span><span class="fa fa-star"
+														style="color: yellow"></span><span class="fa fa-star"
+														style="color: yellow"></span>
+													</label>
+												</div>
+												<div class="col-md-4">
+													<label class="control-label"
+														ng-show="successRate == 1 && parent.priceQuote > 0">Success
+														rate </label><br /> <label
+														ng-show="successRate == 1 && parent.priceQuote > 0">
+														{{successRatePer}}% </label>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer"
+											style="background-color: white; border-radius: 0px 0px 10px 10px;">
+											<div class="row">
+												<button class="btn btn-md btn-info"
+													ng-click="submitServiceUserQuote(elements.product.productid)"
+													data-dismiss="modal">Submit</button>
+												&nbsp;
+												<button class="btn btn-md btn-info" data-dismiss="modal">Cancel</button>
+											</div>
+											<div class="row" ng-if="parent.userMessage">
+												<label> {{parent.userMessage}}</label><br />
+												<button class="btn btn-md btn-info"
+													ng-show="parent.userMessage" ng-click="successRate = 0;"
+													data-dismiss="modal" ng-click="parent.userMessage = null">OK</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table> -->
+			<div class="vendordetails appointment-font">
+				<div ng-repeat="elements in serviceVendor" style="line-height: 10%">
+					<div style="padding-bottom: 2%; padding-top: 2%;">
+						<img ng-src="images/{{elements.product.productImage}}" width="50%"
+							height="50%" alt="..." class="img-responsive img-rounded" />
+					</div>
+					<div style="padding-bottom: 2%; padding-top: 2%;">
+						<font> {{elements.product.productName}} </font>
+					</div>
+					<div style="padding-bottom: 2%; padding-top: 2%;">
+						<font> <label>{{elements.vendorRating}}</label>
+						</font>
+					</div>
+					<div style="padding-bottom: 2%; padding-top: 2%;">
+						<font> {{elements.product.productDescription}} </font>
+					</div>
+					<div style="padding-bottom: 2%; padding-top: 2%;">
+						<div ng-show="elements.vendorLocation != null">
+							<label>{{elements.vendorLocation}}</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="scroller" scroll-spy="" data-target="#navPills"
+		ng-if="scroll == 1 && (myorderDisplay != 1)" data-scroll-offset="82"
+		style="font-family: Lato; height: 100%">
+		<div id="myorder" ng-if="(myorderDisplay != 1)"
+			style="padding-top: 50px; padding-left: 0px; height: 100%;">
+			<div ng-include="'views/myOrder.html'" style="height: 100%"></div>
+		</div>
+		</div>
+
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<fieldset>
+			<legend class="appointment-header"> Order History </legend>
+			
+		</fieldset>
+		<div></div>
+	</div>
+</div>

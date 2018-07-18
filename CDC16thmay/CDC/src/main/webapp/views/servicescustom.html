@@ -1,0 +1,256 @@
+<div class="row"
+	style="padding-left: 20px; padding-right: 30px; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato;"
+	ng-init="getServicesCustom();">
+	<div style="text-align: left; color: purple; margin-left: 2%"
+		ng-show="parent.showServiceOrderHistory == 1">
+		<button class="btn btn-sm btn-primary"
+			ng-click="fetchProfile()">Create
+			Service</button>
+	</div>
+	<div ng-show="parent.showServiceOrderHistory == 1 ">
+		<div style="text-align: center; color: purple;">
+			<h4>Order History</h4>
+		</div>
+		<table id="cart" ng-if="vendorServiceOrderList != ''"
+			class="table table-hover table-condensed appointment-header"
+			style="border: 1px solid lightgray;">
+			<thead style="background-color: #f5f5f5;">
+				<tr>
+					<!-- <th style="width: 25%">Service</th> -->
+					<th style="width: 15%">Service Order Id</th>
+					<th style="width: 15%">Service Name</th>
+					<th style="width: 15%">Requested Date</th>
+					<th style="width: 15%">Service Date & Time</th>
+					<th style="width: 25%">Service Location</th>
+					<th style="width: 15%">Order Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="elements in vendorServiceOrderList | pagination: curPage * pageSize | limitTo: 4"
+					style="line-height: 100px;">
+					<td data-th="OrderId">
+						<!-- <a href="" ng-click="showOrderDetails(elements);" class="btn btn-sm btn-primary">{{elements.orderMasterId}}</a> </td> -->
+						<a href="#myorder" data-toggle="tab" id="orderId"
+						prevent-default="" scroll-to="orderfulldetails"
+						ng-click="showOrderDetails(elements);showOrderVendorApprovals(elements);">{{elements.orderMasterId}}</a>
+					</td>
+
+					<td data-th="ServiceName"><label>{{elements.service.productName}}</label></td>
+					<td data-th="VendorEmail"><label>{{elements.dateCreated
+							| dateformat}}</label></td>
+					<td data-th="BuyerEmail"><label>{{elements.serviceRequestedDate
+							| dateformat}} / {{elements.timeSlot}}</label></td>
+					<td data-th="BuyerEmail"><label>{{elements.serviceLocation}}</label></td>
+					<td data-th="SO Status">{{elements.orderStatus}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="row pull-center">
+			<div class="pagination-div" ng-show="vendorServiceOrderList.length"
+				style="background-color: #f1f1f1; padding-left: 10px;">
+				<ul style="list-style: none;">
+					<li class="col-md-8"></li>
+					<li class="col-md-1">
+						<button type="button" ng-disabled="curPage == 0"
+							class="btn btn-xs btn-warning" style="font-size: 12px;"
+							ng-click="curPage=curPage-1">PREV</button>
+					</li>
+					<li class="col-md-1"><span>Page {{curPage + 1}} of {{
+							numberOfPages(vendorServiceOrderList)}}</span></li>
+					<li class="col-md-1">
+						<button type="button"
+							ng-disabled="curPage >= vendorServiceOrderList.length/pageSize - 1"
+							class="btn btn-xs btn-warning" style="font-size: 12px;"
+							ng-click="curPage = curPage+1">NEXT</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row" ng-if="vendorServiceOrderList == ''"
+			style="padding-left: 20px; padding-right: 30px; text-align:center; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato;">
+			<font>No Orders Found. &nbsp; Would your like to create ?
+				<button class="btn btn-sm btn-primary"
+					ng-click="fetchProfile()"> Click
+					here</button>
+			</font>
+		</div>
+	</div>
+	<div class="row"
+		style="padding-left: 20px; padding-right: 30px; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato;"
+		ng-show="parent.createServices == 1">
+
+		<form ng-submit="bookService()" novalidate name="serviceorder"
+			id="serviceorder">
+
+			<div class="form-group">
+				<div class="col-sm-6"
+					ng-class="{ 'has-error': serviceorder.selectedCategory.$invalid }">
+					<label class="control-label">Search Category</label> <select
+						ng-model="selectedCategory" style="padding: 0px"
+						ng-change="selectVendorCustom(selectedCategory)"
+						class="form-control appointment-formitems" required>
+						<option class="service-dropdown" ng-repeat="elements in services"
+							value="{{elements.productSubCategory}}">{{elements.productSubCategory}}</option>
+					</select>
+				</div>
+				<div class="col-sm-6"
+					ng-class="{'has-error': serviceorder.serviceRequestedDate.$invalid}">
+					<label class="control-label">Service Date</label> <input id="date"
+						type="text" class="form-control appointment-formitems"
+						datepicker-popup="{{format}}"
+						ng-model="parent.serviceRequestedDate"
+						is-open="serviceRequestedDate" required min-date="minDate"
+						max-date="'2015-06-22'" datepicker-options="dateOptions"
+						date-disabled="disabled(date, mode)" close-text="Close" />
+				</div>
+			</div>
+			&nbsp;
+
+			<div class="form-group">
+				<div class="col-sm-6"
+					ng-class="{ 'has-error': serviceorder.parent.timeslot.$invalid }">
+					<label for="timeslot">Choose a time slot <font color="red">*</font></label>
+					<select class="form-control appointment-formitems" id="timeslot"
+						ng-model="parent.timeslot" style="height: 32px; padding: 0px;">
+						<option>9-12 AM</option>
+						<option>12-3 PM</option>
+						<option>3-6 PM</option>
+						<option>6-9 PM</option>
+					</select>
+				</div>
+				<div class="col-sm-6"
+					ng-class="{ 'has-error': serviceorder.selectedCategory.$invalid }">
+					<label class="control-label">Choose Location</label> <input
+						type="text" class="form-control appointment-formitems"
+						id="serviceLocation" aria-describedby="emailHelp"
+						placeholder="Location" ng-model="parent.serviceLocation" required>
+				</div>
+			</div>
+			&nbsp;
+			<div class="form-group">
+				<div class="col-sm-6"
+					ng-class="{'has-error': serviceorder.emailId.$invalid}">
+					<label for="exampleInputEmail1">Email address <font
+						color="red">*</font></label> <input type="email" ng-disabled="true"
+						class="form-control appointment-formitems" id="exampleInputEmail1"
+						aria-describedby="emailHelp" placeholder="email id"
+						ng-model="emailId" required>
+				</div>
+				<div class="col-sm-6"
+					ng-class="{'has-error': serviceorder.phoneNumber.$invalid}">
+					<label for="phonenumber">Phone Number <font color="red">*</font></label>
+					<input type="text" class="form-control appointment-formitems"
+						id="phonenumber" aria-describedby="emailHelp" ng-disabled="true"
+						placeholder="phone number" ng-model="phoneNumber" required>
+				</div>
+			</div>
+			&nbsp;
+			<div class="form-group">
+				<div class="col-sm-6"
+					ng-class="{'has-error': serviceorder.address.$invalid}">
+					<label for="exampleTextarea">Address <font color="red">*</font></label>
+					<textarea class="form-control appointment-formitems"
+						ng-disabled="true" id="exampleTextarea" ng-model="address"
+						rows="5" required></textarea>
+				</div>
+				<div class="col-sm-6"
+					ng-class="{'has-error': serviceorder.comment.$invalid}">
+					<label for="exampleTextarea">Additional Comments <font
+						color="red">*</font></label>
+					<textarea class="form-control appointment-formitems"
+						id="exampleTextarea" ng-model="comment" rows="5" required></textarea>
+				</div>
+			</div>
+
+			<div ng-if="serviceSpecificInfo==1">
+				<fieldset>
+					<legend class="appointment-header"> Service Specific Info
+					</legend>
+				</fieldset>
+				<div ng-if="laundryForm==1">
+					<div class="form-group"
+						ng-class="{'has-error': serviceorder.netwt.$invalid}">
+						<label for="netwt">Net weight of clothes <font color="red">*</font></label>
+						<input type="text" class="form-control appointment-formitems"
+							id="netwt" placeholder="enter approximate weight"
+							ng-model="parent.netwt" required>
+					</div>
+				</div>
+				<div ng-if="repairGadgetsForm==1">
+					<div class="form-group"
+						ng-class="{'has-error': serviceorder.gadgettype.$invalid}">
+						<label for="gadgettype">Gadget Type <font color="red">*</font></label>
+						<input type="text" class="form-control appointment-formitems"
+							id="gadgettype" placeholder="type" ng-model="parent.gadgettype"
+							required>
+					</div>
+				</div>
+				<div ng-if="residentialCleaningForm==1">
+					<div class="form-group"
+						ng-class="{'has-error': serviceorder.cleaning.$invalid}">
+						<label for="cleaning">Cleaning <font color="red">*</font></label>
+						<input type="text" class="form-control appointment-formitems"
+							id="cleaning" placeholder="cleaning" ng-model="parent.cleaning"
+							required>
+					</div>
+				</div>
+			</div>
+			&nbsp;
+			<div style="text-align: center">
+				<button class="btn btn-sm btn-primary" type="submit"
+					ng-disabled="serviceorder.$invalid">Request Service</button>
+				&nbsp;&nbsp;
+				<button class="btn btn-sm btn-primary" type="button"
+					ng-click="setShowServiceOrderHistory()">Back to Order</button>
+			</div>
+		</form>
+
+		<!-- <div
+			class="col-md-7 col-md-offset-1 col-lg-7 col-lg-offset-1 col-sm-7 col-sm-offset-1 appointment text-gradient"
+			style="float: right;" ng-if="serviceVendorExist!=0">
+			<fieldset>
+				<legend class="appointment-header">
+					Vendor Info<img ng-src="" />
+				</legend>
+			</fieldset>
+			<div ng-if="showServicesCustom == 1">
+				<div>
+					<div class="col-md-12 col-sm-12 col-lg-12"
+						ng-repeat="elements in serviceVendor">
+						<div class="col-md-6 col-lg-6 col-sm-6">
+							<img ng-src="images/{{elements.product.productImage}}"
+								width="70%" height="70%" alt="..."
+								class="img-responsive img-rounded" />
+						</div>
+						<div class="col-md-6 col-lg-6 col-sm-6">
+							<div>
+								<label class="appointment-header">Service Name : </label><font>
+									{{elements.product.productName}} </font>
+							</div>
+							<div>
+								<span><label class="appointment-header">Vendor
+										Rating : </label></span><span><font> <label>{{elements.vendorRating}}</label>
+								</font></span>
+							</div>
+							<div>
+								<span><label class="appointment-header">Description
+										: </label></span><span><font>
+										{{elements.product.productDescription}} </font></span>
+							</div>
+							<div>
+								<div ng-show="elements.vendorLocation != null">
+									<span><label class="appointment-header">Location
+											: </label></span><span><label>{{elements.vendorLocation}}</label></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+	</div>
+</div>
+<br />
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>

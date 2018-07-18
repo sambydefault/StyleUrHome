@@ -1,0 +1,447 @@
+<div class="container-fluid payment">
+	<!-- new product content -->
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-primary" style="border-color: white;">
+				<div class="panel-heading" style="padding: 0px;">
+					<div class="row">
+						<div class="col-xs-3">
+							<div class="col-xs-6">
+								<div>
+									<label>Ordered Items</label>
+
+								</div>
+							</div>
+							<div class="col-xs-3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-body">
+					<table id="cart" class="table table-hover table-condensed"
+						style="border: 1px solid lightgray;">
+						<thead style="background-color: #f5f5f5;">
+							<tr>
+								<th style="width: 40%">Product Description</th>
+								<th style="width: 15%">Vendor</th>
+								<th style="width: 15%">Quantity</th>
+								<th style="width: 20%">Price</th>
+							</tr>
+						</thead>
+						<tbody style="padding: 1%">
+							<tr>
+								<td data-th="Product">
+									<div class="row">
+										<div class="col-sm-4 hidden-xs">
+											<img ng-src="images/{{productInfo.product.productImage}}"
+												width="100%" height="100%" alt="..."
+												class="img-responsive img-rounded" />
+										</div>
+										<div class="col-sm-8">
+											<h4 class="nomargin">{{}}</h4>
+											<p>{{productInfo.product.productDescription}}</p>
+										</div>
+									</div>
+								</td>
+								<td data-th="Vendor"></i> {{productInfo.productQuantity}}</td>
+								<td data-th="Quantity">{{productInfo.productQuantity}}</td>
+								<td data-th="Price"><i class=" fa fa-inr"></i>{{productInfo.userPrice
+									| currency : "" :2}}</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="row col-md-12 col-sm-12 col-xs-12">
+						<div class=" col-xs-9 col-xs-offset-10">
+							<table>
+								<tr>
+									<td class="text-left">
+										<p>
+											<strong>Subtotal&nbsp;</strong>
+										</p>
+										<p>
+											<strong>Tax&nbsp;</strong>
+										</p>
+										<hr style="border-color: black">
+										<p>
+											<strong>Total&nbsp;</strong>
+										</p>
+									</td>
+									<td class="text-center">
+										<p>
+											<strong>&nbsp;:&nbsp;</strong>
+										</p>
+										<p>
+											<strong>&nbsp;:&nbsp;</strong>
+										</p>
+										<hr style="border-color: black">
+										<p>
+											<strong>&nbsp;:&nbsp;</strong>
+										</p>
+									</td>
+									<td class="text-right">
+										<p>
+											<strong> <i class=" fa fa-inr text-right"> </i>&nbsp;{{productInfo.userPrice
+												| currency : "" :2}}
+											</strong>
+										</p>
+										<p>
+											<strong> <i class=" fa fa-inr text-right"> </i>&nbsp;{{10
+												| currency : "" :2}}
+											</strong>
+										</p>
+										<hr style="border-color: black">
+										<p>
+											<strong> <i class=" fa fa-inr text-right"> </i>
+												&nbsp;{{totalPrice | currency : "" :2}}
+											</strong>
+										</p>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+
+					<div class="row text-center col-md-12 col-sm-12 col-xs-12"
+						ng-if="itemsVisibility == 0">
+						<div class="col-xs-3 col-xs-offset-9">
+							<button id="showddress-btn" type="button"
+								class="btn btn-sm btn-primary btn-block"
+								ng-click="makeAddressVisible();">Next</button>
+						</div>
+					</div>
+					<div class="col-md-12 container" style="padding: 10px;"></div>
+					<!-- entry -->
+					<div id="addressdiv" ng-show="paynow"
+						class="col-md-12 container-fluid">
+						<div class="panel-heading"
+							style="border: 1px solid lightgray; background: #337ab7; padding: 0px; border-radius: 5px; color: white;">
+							<div class="row">
+								<div class="col-xs-3">
+									<div class="col-xs-6">
+										<div>
+											<label>Delivery Address</label>
+
+										</div>
+									</div>
+									<div class="col-xs-3"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="radio col-md-4" ng-class="class"
+							ng-click="shownexticon()">
+							<input type="radio" name="optradio"
+								ng-click="newAddress = 0; paymentVisibility = 0;">
+							<div class="col-md-11 delivery-address paymentboldtext"
+								contenteditable="false">
+								<div style="padding-top: 5px;">
+									{{userName}} <br> {{profileData.userAddressOne}} <br>
+									{{profileData.userAddressTwo}}<br>
+									{{profileData.userCity}} <br> {{profileData.userState}}<br>{{profileData.userCountry}}<br>
+									{{profileData.zipCode}}
+								</div>
+							</div>
+						</div>
+						<div class="col-md-2" ng-class="class" style="padding-top: 10px;">
+							<input type="radio" name="optradio"
+								ng-click="newAddress = 1; paymentVisibility = 0; newAddressVisibility()"> <b>Add
+								a new address</b><br />
+						</div>
+						<div class="col-md-6">
+							<div class="col-md-12" ng-show="newAddress == 1"
+								style="padding-top: 10px;">
+								<div class="col-md-3">
+									<label class="control-label">Address #1</label>
+								</div>
+								<div class="col-md-8">
+									<input type="text" class="form-control" required="required"
+										style="height: 25px;" ng-model="profileData.userAddressOne">
+								</div>
+								<div class="col-md-3" style="padding-top: 7px;">
+									<label class="control-label">Address #2</label>
+								</div>
+								<div class="col-md-8" style="padding-top: 7px;">
+									<input type="text" class="form-control" required="required"
+										style="height: 25px;" ng-model="profileData.userAddressTwo">
+								</div>
+								<div class="col-md-3" style="padding-top: 7px;">
+									<label class="control-label">City</label>
+								</div>
+								<div class="col-md-8" style="padding-top: 7px;">
+									<input type="text" class="form-control" required="required"
+										style="height: 25px;" ng-model="profileData.userCity">
+								</div>
+								<div class="col-md-3" style="padding-top: 7px;">
+									<label class="control-label">State</label>
+								</div>
+								<div class="col-md-8" style="padding-top: 7px;">
+									<input type="text" class="form-control" required="required"
+										style="height: 25px;" ng-model="profileData.userState">
+								</div>
+								<div class="col-md-3" style="padding-top: 7px;">
+									<label class="control-label">Country</label>
+								</div>
+								<div class="col-md-8" style="padding-top: 7px;">
+									<input type="text" class="form-control" required="required"
+										style="height: 25px;" ng-model="profileData.userCountry">
+								</div>
+								<div class="col-md-3" style="padding-top: 7px;">
+									<label class="control-label">Zipcode</label>
+								</div>
+								<div class="col-md-8" style="padding-top: 7px;">
+									<input type="text" class="form-control" required="required"
+										style="height: 25px;" ng-model="profileData.zipCode">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row text-center col-md-12 col-sm-12 col-xs-12">
+						<div class="col-xs-3 col-xs-offset-9">
+							<button id="address-next-icon" type="button"
+								ng-show="newAddress == 0"
+								class="btn btn-sm btn-primary btn-block" style="display: none;"
+								ng-click="dopaymentoption(); ">Next</button>
+							<button id="address-save-icon" type="button"
+								ng-show="newAddress == 1"
+								class="btn btn-sm btn-primary btn-block"
+								ng-click="savenewaddress();">Save & Next</button>
+						</div>
+					</div>
+
+					<div class="col-md-12 container" style="padding: 10px;"></div>
+
+					<!-- ends -->
+					<!-- second entry -->
+					<div id=paymentmode ng-show="paymentshow"
+						class="col-md-12 container-fluid">
+						<div class="panel-heading"
+							style="border: 1px solid lightgray; background: #337ab7; padding: 0px; border-radius: 5px; color: white;">
+							<div class="row">
+								<div class="col-xs-3">
+									<div class="col-xs-6">
+										<div>
+											<label>Payment Options</label>
+
+										</div>
+									</div>
+									<div class="col-xs-3"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-xs-2"></div>
+
+							<div class="col-xs-3">
+								<div>
+									<input type="radio" name="paymentMode"
+										ng-click="cards = 1; ewallet = 0; cod = 0;">&nbsp;&nbsp;<img
+										src="images/cards.PNG" width="100" height="70"
+										ng-click="cards = 1; ewallet = 0; cod = 0;" />
+								</div>
+							</div>
+							<div class="col-xs-3">
+								<div>
+									<input type="radio" name="paymentMode"
+										ng-click="cards = 0; ewallet = 1; cod = 0;"><img
+										src="images/ewallet.png" width="100" height="70"
+										ng-click="cards = 0; ewallet = 1; cod = 0;" />
+								</div>
+							</div>
+							<div class="col-xs-3">
+								<div>
+									<input type="radio" name="paymentMode"
+										ng-click="cards = 0; ewallet = 0; cod = 1;">&nbsp;&nbsp;<img
+										src="images/cod.png" width="100" height="70"
+										ng-click="cards = 0; ewallet = 0; cod = 1;" />
+								</div>
+							</div>
+							<div class="col-xs-1"></div>
+
+						</div>
+
+						<div id="" ng-if="cards == 1"
+							class="col-md-12 container-fluid paymenttext">
+							<!-- card -->
+							<section class="credit-card visa gr-visa">
+								<form name="creditcardform" novalidate>
+									<div class="inputs">
+										<div class="form-group has-feedback"
+											ng-class="{ 'has-error': creditcardform.cardholdername.$invalid }">
+											<label for="card-holder-name">Card Holder</label> <input
+												type="text" class="form-control" name="cardholdername"
+												id="card-holder-name" placeholder="Enter Name"
+												ng-model="cardholdername" required> <i
+												class="glyphicon glyphicon-user form-control-feedback"></i>
+										</div>
+										<div class="form-group has-feedback"
+											ng-class="{ 'has-error': creditcardform.cardnumber.$invalid }">
+											<label for="card-number">Card Number</label> <input
+												type="text" class="form-control" name="cardnumber"
+												id="card-number" pattern="[0-9]{13,16}"
+												placeholder="Debit/Credit Card Number" ng-model="cardnumber"
+												required> <i
+												class="glyphicon glyphicon-credit-card form-control-feedback"></i>
+										</div>
+										<div>
+											<div class="col-md-12">
+												<div class="col-md-4 form-group"
+													ng-class="{ 'has-error': creditcardform.expirymonth.$invalid }">
+													<label for="expiry-month">Month </label> <select
+														class="form-control" name="expirymonth" id="expiry-month"
+														required ng-model="expirymonth">
+														<option value="01">Jan</option>
+														<option value="02">Feb</option>
+														<option value="03">Mar</option>
+														<option value="04">Apr</option>
+														<option value="05">May</option>
+														<option value="06">Jun</option>
+														<option value="07">Jul</option>
+														<option value="08">Aug</option>
+														<option value="09">Sep</option>
+														<option value="10">Oct</option>
+														<option value="11">Nov</option>
+														<option value="12">Dec</option>
+													</select>
+												</div>
+												<div class="col-md-4 form-group"
+													ng-class="{ 'has-error': creditcardform.expiryyear.$invalid }">
+													<label for="expiry-year">Year </label> <select
+														class="form-control" name="expiryyear" id="expiry-year"
+														required ng-model="expiryyear">
+
+														<option value="13">2013</option>
+														<option value="14">2014</option>
+														<option value="15">2015</option>
+														<option value="16">2016</option>
+														<option value="17">2017</option>
+														<option value="18">2018</option>
+														<option value="19">2019</option>
+														<option value="20">2020</option>
+														<option value="21">2021</option>
+														<option value="22">2022</option>
+														<option value="23">2023</option>
+													</select>
+												</div>
+												<div class="col-md-4 form-group"
+													ng-class="{ 'has-error': creditcardform.cvv_code.$invalid }">
+													<label for="expiry-year">CVV </label> <input type="text"
+														class="form-control" name="cvv_code" id="cvvcode"
+														placeholder="Enter CVV" ng-model="cvv_code" required>
+												</div>
+											</div>
+										</div>
+										<div>
+											<div class="clearfix"></div>
+										</div>
+									</div>
+								</form>
+							</section>
+							<div class="form-group">
+								<div class="col-sm-offset-4 col-sm-3">
+									<button type="button" class="btn btn-primary"
+										ng-click="placeOrder(productInfo)"
+										ng-disabled="creditcardform.$invalid">Pay Now</button>
+								</div>
+								<div class="col-sm-3">
+									<button type="button" class="btn btn-warning"
+										ng-click="acceptedQuotes(); showAcceptedQuotes = 1; pagination();showCheckout = 0">Go
+										Back</button>
+								</div>
+							</div>
+						</div>
+
+						<div id="" ng-if="ewallet == 1"
+							class="col-md-12 container-fluid paymenttext">
+							<section style="min-height: 50%; max-height: auto;">
+								<div class="row" style="padding: 20px;"></div>
+								<div class="row"
+									style="text-align: center; height: 100%; background: #27819f; border: 1px solid lightgray; color: white;"
+									ng-if="paytmeligible == '1'">
+									<br> <label>Your Wallet amount sufficient to pay
+										your item total : Rs. {{totalPrice}}</label>
+								</div>
+
+								<div class="row"
+									style="text-align: center; height: 100%; background: #27819f; border: 1px solid lightgray; color: white;"
+									ng-if="paytmeligible == '0'">
+									<br> <label>Available Wallet amount not sufficient
+										to make this transaction - Please refill your wallet</label>
+								</div>
+								<div class="row" style="text-align: center; height: 100%;">
+									<table id="
+									paytm"
+										class="table table-hover table-condensed"
+										style="border: 1px solid lightgray;">
+										<thead style="background-color: #f5f5f5;">
+											<tr>
+												<th style="width: 25%">Item Cost</th>
+												<th style="width: 25%">Paytm wallet Balance</th>
+												<th style="width: 25%">Last Transaction Amount</th>
+												<th style="width: 25%">Last Transaction Date</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr style="line-height: 200px;">
+												<td>Rs.{{totalPrice}}</td>
+												<td>Rs.{{availableAmount}}</td>
+												<td>Rs.{{lastTransaction}}</td>
+												<td>{{lastTransactionDate}}</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-4 col-sm-3"
+										ng-if="paytmeligible == '1'">
+										<button type="button" class="btn btn-primary"
+											ng-click="placePaytmOrder(availableAmount,totalPrice)">Pay
+											Now</button>
+									</div>
+									<div class="col-sm-offset-4 col-sm-3"
+										ng-if="paytmeligible == '0'">
+										<button type="button" class="btn btn-primary"
+											ng-click="refillWallet(productInfo)">Refill Wallet</button>
+									</div>
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-warning"
+											ng-click="acceptedQuotes(); showAcceptedQuotes = 1; pagination();showCheckout = 0">Go
+											Back</button>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div ng-if="cod == 1">
+							<section
+								style="min-height: 50%; max-height: auto; padding: 30px;">
+								<div class="row"></div>
+								<div class="row" style="margin-left: 20%">
+									<label>We also accept Credit/ Debit cards on delivery,
+										subject to availability of the payment device. Please check
+										with the delivery agent</label>
+								</div>
+								<div class="row" style="padding: 10px;"></div>
+
+								<div class="form-group">
+									<div class="col-sm-offset-4 col-sm-3">
+										<button type="button" class="btn btn-primary"
+											ng-click="placePaytmOrder(availableAmount,totalPrice)">Place
+											Order</button>
+									</div>
+									<div class="col-sm-3">
+										<button type="button" class="btn btn-warning"
+											ng-click="acceptedQuotes(); showAcceptedQuotes = 1; pagination();showCheckout = 0">Go
+											Back</button>
+									</div>
+								</div>
+							</section>
+						</div>
+						<!-- card ends -->
+					</div>
+				</div>
+			</div>
+			<!-- ends -->
+		</div>
+	</div>
+</div>

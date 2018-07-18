@@ -1,0 +1,15 @@
+1. Alter the table to map it to long text.
+alter table vendor modify column  vendor_agreement_text longtext;
+
+2. If product is not populated, increase the max_allocated size in mysql to 1024M
+
+3. 
+ Ensure the DB URL is wrapped with cdc?zeroDateTimeBehavior=convertToNull
+
+
+Please add some more sample data, atleast 10 vedors for product offering more than 10 products.
+Same with services.
+
+Further Does the app work good in Firefox? What is the recommended browser? - ANy browser
+
+App download link is there when we login right?

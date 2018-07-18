@@ -1,0 +1,96 @@
+.appointment {
+	padding-top: 2%;
+	padding-bottom: 2%;
+	margin-bottom: 1%;
+}
+
+
+.appointment-bigfont {
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial,
+		sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 26.4px;
+}
+
+.text-gradient {
+	border-radius: 2px;
+	background: white; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(top, rgba(252, 252, 252, 0),
+		rgb(230, 230, 250)); /*Safari 5.1-6*/
+	background: -o-linear-gradient(bottom, rgba(252, 252, 252, 0),
+		rgb(230, 230, 250)); /*Opera 11.1-12*/
+	background: -moz-linear-gradient(bottom, rgba(252, 252, 252, 0),
+		rgb(230, 230, 250)); /*Fx 3.6-15*/
+	background: linear-gradient(to bottom, rgba(252, 252, 252, 0),
+		rgb(230, 230, 250)); /*Standard*/
+}
+
+.text-gradient-white {
+	border-radius: 2px;
+	background: white; /* For browsers that do not support gradients */
+	background: -webkit-linear-gradient(top, rgba(252, 252, 252, 0),
+		rgb(244, 242, 245)); /*Safari 5.1-6*/
+	background: -o-linear-gradient(bottom, rgba(252, 252, 252, 0),
+		rgb(244, 242, 245)); /*Opera 11.1-12*/
+	background: -moz-linear-gradient(bottom, rgba(252, 252, 252, 0),
+		rgb(244, 242, 245)); /*Fx 3.6-15*/
+	background: linear-gradient(to bottom, rgba(252, 252, 252, 0),
+		rgb(244, 242, 245)); /*Standard*/
+}
+
+
+.appointment .service-dropdown {
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial,
+		sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 26.4px;
+}
+
+.appointment-header {
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial,
+		sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 26.4px;
+}
+.text-center{
+	text-align: center;
+}
+
+/* :required  {  
+	 background: url(http://findicons.com/files/icons/1583/silk_companion_1/16/asterisk_red.png) no-repeat;
+	 background-position:right top;
+	} */
+
+.appointment-font {
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial,
+		sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	line-height: 26.4px;
+}
+.appointment-smallfont{
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial,
+		sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 26.4px;
+}
+.appointment-formitems {
+	border: 1px solid rgba(16, 103, 133, 0.6);
+	box-shadow: 0px 0px 3px rgba(255, 255, 255, 0.5), inset 0px 1px 4px
+		rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+}

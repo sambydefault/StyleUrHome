@@ -1,0 +1,140 @@
+<div class="row" ng-if="vendorList != ''"
+	style="padding-left: 20px; padding-right: 30px; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato; background-color: #FBFCFC">
+	<div style="color: purple; text-align: center;">
+		<H4>User Submitted Quotes. Please respond quickly to grab
+			the customers</h4>
+	</div>
+	<table id="cart" class="table table-hover table-condensed"
+		style="border: 1px solid lightgray;">
+		<thead style="background-color: #f5f5f5;">
+			<tr>
+				<th style="width: 30%">Product & Product Description</th>
+				<th style="width: 10%">Quantity</th>
+				<th style="width: 15%">Price</th>
+				<th style="width: 15%">Date Required</th>
+				<th style="width: 15%">Address</th>
+				<th style="width: 15%">Response</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="divHeight"
+				ng-repeat="elements in vendorList | pagination: curPage * pageSize | limitTo: 4">
+				<td data-th="Product">
+					<div class="row">
+						<div class="col-sm-4 hidden-xs">
+							<img ng-src="images/{{elements.product.productImage}}"
+								width="100%" height="100%" alt="..."
+								class="img-responsive img-rounded zoom" />
+						</div>
+						<div class="col-sm-8">
+							{{elements.product.productDescription}}</div>
+					</div>
+				</td>
+				<td data-th="quantity"><label>{{elements.productQuantity}}</label></td>
+				<td data-th="Price"><i class=" fa fa-inr"> </i>
+					{{elements.userPrice | currency : "" : 2}}</td>
+				<td data-th="status"><label>{{elements.dateRequired |
+						dateformat}}</label></td>
+				<td data-th="status"><label>{{elements.user.userAddressOne}}</label><br />
+					<label>{{elements.user.userAddressTwo}}</label><br /> <label>{{elements.user.userCity}}</label></td>
+
+				<td><button data-toggle="tab" id="homeMenu" prevent-default=""
+						scroll-to="anyHome"
+						ng-click="approveQuote(elements.consumerPriceID)"
+						class="btn btn-xs btn-warning">
+						<i class="fa fa-thumbs-up"></i> Approve
+					</button> &nbsp;&nbsp;&nbsp;
+<!-- 					<button data-toggle="modal"
+						data-target="#suggestPrice_{{elements.consumerPriceID}}"
+						class="btn btn-xs btn-primary">
+						<i class="fa fa fa-thumbs-down"></i> Suggest
+					</button>
+ -->					<div class="modal fade"
+						id="suggestPrice_{{elements.consumerPriceID}}" tabindex="-1"
+						role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content"
+								style="background-color: #53657d; color: white;">
+								<div class="modal-header">
+									<div class="modal-title" id="myModalLabel"
+										style="text-align: center">
+										<div class="col-md-4" style="text-align: left">
+											<b style="margin-left: 5px;">Beats Headphnes</b>
+										</div>
+										<div class="col-md-8" style="text-align: right;">
+											<b style="margin-right: 5px;">Trending Price Range :
+												Rs.2500 - Rs.3500 </b>
+										</div>
+										<br />
+									</div>
+								</div>
+								<div class="modal-body"
+									style="background-color: #53657d; color: white; text-align: left;">
+									<div class="row">
+										<div class="col-md-6">
+											<label class="control-label">Suggested Price</label> <input
+												type="text" class="form-control"
+												ng-model="parent.suggestedPrice">
+										</div>
+										<div class="col-md-6">
+											<label class="control-label">Reason</label> <select
+												class="form-control" ng-model="parent.rejectReason">
+												<option>Very less</option>
+												<option>Others</option>
+											</select>
+										</div>
+										<div class="row">
+											<div class="col-md-6"></div>
+											<div class="col-md-6"
+												ng-show="parent.rejectReason == 'Others'">
+												<label class="control-label">Enter your reason</label> <input
+													type="text" class="form-control"
+													ng-model="parent.vendorReason">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer"
+									style="background-color: white; color: white;">
+									<div class="row">
+										<button class="btn btn-md btn-info" data-dismiss="modal"
+											ng-click="vendorRejection(elements.consumerPriceID)">Submit</button>
+										<button class="btn btn-md btn-info" data-dismiss="modal">Cancel</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row pull-center">
+		<div class="pagination-div" ng-show="vendorList.length"
+			style="background-color: #f1f1f1; padding-left: 10px;">
+			<ul style="list-style: none;">
+				<li class="col-md-8"></li>
+				<li class="col-md-1">
+					<button type="button" ng-disabled="curPage == 0"
+						class="btn btn-xs btn-warning" style="font-size: 12px;"
+						ng-click="curPage=curPage-1">PREV</button>
+				</li>
+				<li class="col-md-1"><span>Page {{curPage + 1}} of {{
+						numberOfPages(vendorList)}}</span></li>
+				<li class="col-md-1">
+					<button type="button"
+						ng-disabled="curPage >= vendorList.length/pageSize - 1"
+						class="btn btn-xs btn-warning" style="font-size: 12px;"
+						ng-click="curPage = curPage+1">NEXT</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row" ng-if="vendorList.length == 0"
+	style="background-color: #f5f5f5; text-align: center; height: 100%;; font-family: Helvetica, Arial, serif, Lato; background-color: #FBFCFC">
+	No Quotes</div>
+<br />
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>

@@ -1,0 +1,98 @@
+<body id="page-top" data-offset="50">
+	<div id="wrapper" class="row-fluid">
+		<nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
+			style="margin-bottom: 0px;">
+			<div class="container-fluid"
+				style="height: 90%; background-color: #232f3e">
+				<div class="navbar-header page-scroll">
+					<button type="button" id="nav-toggle-button"
+						class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#homeMenu">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar" style="background-color: white"></span> <span
+							class="icon-bar" style="background-color: white"></span> <span
+							class="icon-bar" style="background-color: white"></span> <span
+							class="icon-bar" style="background-color: white"></span>
+					</button>
+					<a class="navbar-brand" href="#vendorServiceHome" data-toggle="tab"
+						id="homeMenu" prevent-default="" scroll-to="vendorServiceHome"
+						ng-click="vendorServiceHome()">CDC</a>
+				</div>
+				<div class="collapse navbar-collapse" id="homeMenu">
+					<ul class="nav navbar-nav" style="padding: 0px;">
+						<li class="active"><a href="#vendorServiceHome"
+							data-toggle="tab" id="homeMenu" prevent-default=""
+							scroll-to="vendorServiceHome" ng-click="vendorServiceHome()">Home</a></li>
+						<li><a href="#vendorServiceProducts" data-toggle="tab"
+							id="homeMenu" prevent-default=""
+							scroll-to="vendorServiceProducts"
+							ng-click="showVendorServiceProducts()">Services</a></li>
+						<li><a href="#vendorServiceHome" data-toggle="tab"
+							id="homeMenu" prevent-default="" scroll-to="vendorServiceHome"
+							ng-click="vendorServiceHome()">Appointments</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
+						<li ng-show="loginCheck == 1" class="class="dropdown""><a
+							href="" role="button" class="dropdown-toggle"
+							data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
+								Welcome {{userName}}<span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu"
+								style="background-color: #232f3e">
+								<li><a href="#showVendorProfile" data-toggle="tab"
+									id="homeMenu" prevent-default="" scroll-to="showVendorProfile"
+									ng-click="getVendorProfile(); showVendorProfile = 1"
+									style="color: white">Profile</a></li>
+								<li class="divider"></li>
+								<li><a href="#showVendorAgreement" data-toggle="tab"
+									id="homeMenu" prevent-default=""
+									scroll-to="showVendorAgreement"
+									ng-click="vendorAgreement(); showVendorAgreement = 1"
+									style="color: white">Agreement</a></li>
+								<li class="divider"></li>
+								<li><a href="" ng-click="logout()" style="color: white">Logout</a></li>
+							</ul></li>
+					</ul>
+					</li>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div id="scroller" scroll-spy="" data-target="#navPills"
+		ng-show="scroll == 1" data-scroll-offset="82"
+		style="font-family: Lato; height: 100%">
+		<div id="vendorServiceHome" ng-show="showVendorServiceHome == 1"
+			style="padding-top: 50px; padding-left: 0px; height: 100%">
+			<div ng-include="'views/vendorServiceCart.html'" style="height: 100%"></div>
+		</div>
+
+		<div id="vendorServiceProducts" ng-show="showProduct == 1"
+			style="padding-top: 50px; padding-left: 0px; height: 100%">
+			<!-- <div ng-include="'views/vendorServiceProducts.html'" style="height: 100%"></div> -->
+			<div ng-include="'views/allProducts.html'" style="height: 100%"></div>
+		</div>
+		<div id="addProducts" ng-show="vendorAdd == 1"
+			style="padding-top: 50px; padding-left: 0px; height: 100%">
+			<div ng-include="'views/vendorServiceProducts.html'"
+				style="height: 100%"></div>
+		</div>
+
+	</div>
+	<div id="scroller" scroll-spy="" data-scroll-offset="82"
+		ng-show="showVendorAgreement == 1"
+		style="font-family: Lato; height: 100%">
+		<div id="showVendorAgreement" ng-show="showVendorAgreement == 1"
+			style="padding-left: 0px; padding-top: 50px; height: 100%">
+			<div ng-include="'views/vendorAgreement.html'" style="height: 100%"></div>
+		</div>
+	</div>
+	<div id="scroller" scroll-spy="" ng-show="showVendorProfile == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showVendorProfile" ng-show="showVendorProfile == 1"
+			style="padding-left: 0px; height: 100%">
+			<div ng-include="'views/profile.html'" style="height: 100%"></div>
+		</div>
+	</div>
+
+
+	<!---------------------------------------------  FOOTER ----------------------------------------->
+</body>

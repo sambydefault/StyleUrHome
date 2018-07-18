@@ -1,0 +1,106 @@
+<div class="row" ng-if="consumerQuoteList != ''"
+	style="padding-left: 20px; padding-right: 30px; padding-top: 20px;min-height:100%; max-height: auto;  font-family: Helvetica, Arial, serif, Lato; background-color: #FBFCFC">
+	<div style="color: purple; text-align: center;">
+		<h4>Your Quotes that are in progress..</h4>
+	</div>
+	<table id="cart" class="table table-hover table-condensed"
+		style="border: 1px solid lightgray;">
+		<thead style="background-color: #f5f5f5;">
+			<tr>
+				<th style="width: 25%">Product</th>
+				<th style="width: 15%">Quantity</th>
+				<th style="width: 15%">Price</th>
+				<th style="width: 15%">Status</th>
+				<th style="width: 15%">Date Required</th>
+				<th style="width: 15%">Update</th>
+			</tr>
+		</thead>
+		<tbody
+			ng-repeat="elements in consumerQuoteList | pagination: curPage * pageSize | limitTo: 4">
+			<tr>
+				<td data-th="Product">
+					<div class="row">
+						<div class="col-sm-4 hidden-xs">
+							<img ng-src="images/{{elements.product.productImage}}"
+								width="100%" height="100%" alt="..."
+								class="img-responsive img-rounded" />
+						</div>
+						<div class="col-sm-8">
+							<h4 class="nomargin">{{elements.consumerPriceID}}</h4>
+							<p>{{elements.product.productDescription}}</p>
+						</div>
+					</div>
+				</td>
+				<td data-th="Quantity">{{elements.productQuantity}}</td>
+				<td data-th="Price"><i class=" fa fa-inr"> </i>
+					{{elements.userPrice| currency : "" :2}}</td>
+				<td data-th="Status">{{elements.status}}</td>
+				<td data-th="DateRequired" ng-if="editPrice == 0">{{elements.dateRequired
+					| dateformat}}</td>
+				<td data-th="DateRequired" ng-if="editPrice == 1">
+					<p class="input-group">
+						<input type="text" class="form-control"
+							datepicker-popup="dd/MM/yyyy" ng-model="elements.dateRequired"
+							is-open="opened" min-date="minDate" max-date="'2015-06-22'"
+							datepicker-options="dateOptions"
+							date-disabled="disabled(date, mode)" ng-required="true"
+							close-text="Close" /><span class="input-group-btn">
+							<button type="button" class="btn btn-default"
+								ng-click="open($event)">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</button>
+						</span>
+					</p>
+				</td>
+				<td class="actions" data-th="">
+					<button class="btn btn-xs btn-warning" ng-click="editPrice = true;">
+						<i class="fa fa-edit"></i>
+					</button>
+					<button class="btn btn-danger btn-xs"
+						ng-click="deleteItemInQuote(elements.consumerPriceID)">
+						<i class="fa fa-trash-o"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row pull-center">
+		<div class="pagination-div" ng-show="consumerQuoteList.length"
+			style="background-color: #f1f1f1; padding-left: 10px;">
+			<ul style="list-style: none;">
+				<li class="col-md-8"></li>
+				<li class="col-md-1">
+					<button type="button" ng-disabled="curPage == 0"
+						class="btn btn-xs btn-warning" style="font-size: 12px;"
+						ng-click="curPage=curPage-1">PREV</button>
+				</li>
+				<li class="col-md-1"><span>Page {{curPage + 1}} of {{
+						numberOfPages(consumerQuoteList)}}</span></li>
+				<li class="col-md-1">
+					<button type="button"
+						ng-disabled="curPage >= consumerQuoteList.length/pageSize - 1"
+						class="btn btn-xs btn-warning" style="font-size: 12px;"
+						ng-click="curPage = curPage+1">NEXT</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<br />
+	<div style="padding-left: 40%" class="row">
+		<a href="#anyHome" data-toggle="tab" id="homeMenu" prevent-default=""
+			scroll-to="anyHome" ng-click="home()" class="btn btn-md btn-warning"><i
+			class="fa fa-angle-left"></i> Continue Shopping</a> <!-- &nbsp;&nbsp;&nbsp; <a
+			href="" ng-click="confirmQuote(); " class="btn btn-md btn-primary">Continue
+			Quote <i class="fa fa-angle-right"></i> -->
+		</a>
+	</div>	
+</div>
+<div ng-if="consumerQuoteList == ''"
+	style="padding-left: 20px; padding-right: 20px; height: 100%; font-family: Helvetica, Arial, serif, Lato; background-image: url('images/pay1.png')">
+	<br /> <label>There are no items in your cart currently.
+		Please continue shopping.</label>
+</div>
+<br />
+<br />
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>

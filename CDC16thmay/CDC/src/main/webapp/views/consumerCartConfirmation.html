@@ -1,0 +1,73 @@
+<div class="row"
+	style="padding-left: 20px; padding-right: 30px; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato; background-color: #FBFCFC">
+	<table id="cart" ng-show="cartCount > 0" ng-init="total=0"
+		class="table table-hover table-condensed"
+		style="border: 1px solid lightgray;">
+		<thead style="background-color: #f5f5f5;">
+			<tr>
+				<th style="width: 40%">Product</th>
+				<th style="width: 15%">Quantity</th>
+				<th style="width: 15%">Date Required</th>
+				<th style="width: 15%">Price</th>
+				<th style="width: 15%">Status</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="elements in consumerCartList"
+				"
+				ng-init="$parent.total = $parent.total + elements.userPrice">
+				<td data-th="Product">
+					<div class="row">
+						<div class="col-sm-4 hidden-xs">
+							<img ng-src="images/{{elements.product.productImage}}"
+								width="100%" height="100%" alt="..."
+								class="img-responsive img-rounded" />
+						</div>
+						<div class="col-sm-8">
+							<h4 class="nomargin">{{elements.consumerPriceID}}</h4>
+							<p>{{elements.product.productDescription}}</p>
+						</div>
+					</div>
+				</td>
+				<td data-th="Quantity"><input type="text"
+					ng-model="elements.productQuantity" class="form-control"
+					ng-if="editPrice == true"> <span ng-if="editPrice == false">{{elements.productQuantity}}</span></td>
+				<td data-th="Status">{{elements.dateRequired | dateformat}}</td>
+				<td data-th="Price"><input type="text"
+					ng-model="elements.userPrice" class="form-control"
+					ng-if="editPrice == true"> <span ng-if="editPrice == false"><i
+						class=" fa fa-inr"> </i> {{elements.userPrice | currency : "" : 2
+						}}</span></td>
+				<td data-th="Status">{{elements.status}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="col-md-8"></div>
+		<div class="col-md-2" style="text-align: right">Tax (10%) =</div>
+		<div class="col-md-2" style="text-align: right; width: auto;">
+			<b>Rs. {{quoteTax | currency : "" : 2}}</b>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8"></div>
+		<div class="col-md-2" style="text-align: right">Total Price =</div>
+		<div class="col-md-2" style="text-align: right; width: auto;">
+			<b>Rs. {{quoteTotal | currency : "" : 2}} </b>
+		</div>
+	</div>
+
+	<div style="text-align: center;">
+		<a href="#anyHome" data-toggle="tab" id="homeMenu" prevent-default=""
+			scroll-to="anyHome" ng-click="home()" class="btn btn-md btn-warning"><i
+			class="fa fa-angle-left"></i> Continue Shopping</a> &nbsp;&nbsp;&nbsp; <a
+			href="" ng-click="placeQuote()" class="btn btn-md btn-primary">Submit
+			Quote <i class="fa fa-angle-right"></i>
+		</a>
+	</div>
+</div>
+<br />
+<br />
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>

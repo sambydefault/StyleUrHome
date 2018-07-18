@@ -1,0 +1,100 @@
+<div class="row" ng-show="productDateSortList != ''"
+	style="padding-left: 20px; padding-right: 30px; padding-top: 20px; min-height: 100%; max-height: auto; font-family: Helvetica, Arial, serif, Lato;">
+	<div style="color: purple; text-align: center;">
+		<H4>Please manage your Product/Service Catalogue</h4>
+	</div>
+	<div style="padding-bottom: 1%">
+		<button type="button" class="btn btn-sm btn-primary"
+			ng-click='addProduct()'>Click to Add Product</button>
+	</div>
+
+	<table id="product" class="table table-hover table-condensed"
+		style="border: 1px solid lightgray;">
+		<thead style="background-color: #f5f5f5;">
+			<tr>
+				<th style="width: 25%">Product Info</th>
+				<th style="width: 15%">Product Category</th>
+				<th style="width: 15%">Product Price</th>
+				<th style="width: 15%">Availabile Quantity</th>
+				<th style="width: 15%">Items Sold</th>
+				<th style="width: 15%">Edit</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="divHeight"
+				ng-repeat="elements in productDateSortList | pagination: curPage * pageSize | limitTo: 4">
+				<td data-th="Product">
+					<div class="row">
+						<div class="col-sm-4 hidden-xs">
+							<img ng-src="images/{{elements.productImage}}" width="100%"
+								height="100%" alt="..." class="img-responsive img-rounded zoom" />
+						</div>
+						<div class="col-sm-8">{{elements.productDescription}}</div>
+					</div>
+				</td>
+				<td data-th="Product Category"><span
+					ng-if="editProduct == true"><input type="text"
+						ng-model="elements.productItemCategory" class="form-control"></span>
+					<span ng-if="editProduct == false">{{elements.productItemCategory}}</span>
+				</td>
+				<td data-th="Product Sub Category"><span
+					ng-if="editProduct == false"><i class=" fa fa-inr"> </i>
+						{{elements.productPrice | currency : "":2}}</span><span> <input
+						type="text" ng-model="elements.productPrice" class="form-control"
+						ng-if="editProduct == true"></span></td>
+				<td data-th="Product Sub Category"><span
+					ng-if="editProduct == false">{{elements.productAvailableQty}}</span>
+					<span> <input type="text"
+						ng-model="elements.productAvailableQty" class="form-control"
+						ng-if="editProduct == true"></span></td>
+				<td data-th="Product Category"><span
+					ng-if="editProduct == false">{{elements.productAvailableQty}}</span>
+					<span> <input type="text"
+						ng-model="elements.productAvailableQty" class="form-control"
+						ng-if="editProduct == true"></span></td>
+				<td class="actions" data-th=""><span
+					ng-show="editProduct == false;">
+						<button class="btn btn-info btn-xs" ng-click="editProduct = true;">
+							<i class="fa fa-edit"></i>
+						</button>
+				</span> <span>
+						<button class="btn btn-danger btn-xs"
+							ng-click="removeProduct(elements.productid)">
+							<i class="fa fa-trash-o"></i>
+						</button>
+				</span> <span ng-show="editProduct == true;">
+						<button class="btn btn-info btn-xs"
+							ng-click="editProduct = false;updateProduct(elements);">
+							<i class="fa fa-save"></i>
+						</button>
+				</span></td>
+
+			</tr>
+		</tbody>
+
+	</table>
+	<div class="row pull-center">
+		<div class="pagination-div" ng-show="productDateSortList.length"
+			style="background-color: #f1f1f1; padding-left: 10px;">
+			<ul style="list-style: none;">
+				<li class="col-md-8"></li>
+				<li class="col-md-1">
+					<button type="button" ng-disabled="curPage == 0"
+						class="btn btn-xs btn-warning" style="font-size: 12px;"
+						ng-click="curPage=curPage-1">PREV</button>
+				</li>
+				<li class="col-md-1"><span>Page {{curPage + 1}} of {{
+						numberOfPages(productDateSortList)}}</span></li>
+				<li class="col-md-1">
+					<button type="button"
+						ng-disabled="curPage >= productDateSortList.length/pageSize - 1"
+						class="btn btn-xs btn-warning" style="font-size: 12px;"
+						ng-click="curPage = curPage+1">NEXT</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<br />
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>

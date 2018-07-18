@@ -1,0 +1,552 @@
+<body id="page-top" data-offset="50">
+	<div id="wrapper">
+		<nav class="navbar navbar-default navbar-fixed-top"
+			style="color: white;">
+			<div class="container-fluid" id="menu"
+				style="height: 90%; background-color: #232f3e; color: white;">
+				<div class="navbar-header page-scroll">
+					<button type="button" id="nav-toggle-button"
+						class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar" style="background-color: white"></span><span
+							class="icon-bar" style="background-color: white"></span> <span
+							class="icon-bar" style="background-color: white"></span>
+					</button>
+					<a class="navbar-brand" href="#anyHome" data-toggle="tab"
+						id="homeMenu" prevent-default="" scroll-to="anyHome"
+						ng-click="home()">CDC</a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbar">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#anyHome" data-toggle="tab"
+							id="homeMenu" prevent-default="" scroll-to="anyHome"
+							ng-click="home()">Home</a></li>
+						<li></li>
+
+						<li class="dropdown"><a href="" class="dropdown-toggle"
+							data-toggle="dropdown">Categories<span class="caret"></span></a>
+							<ul class="dropdown-menu" id="productCategory"
+								style="background-color: #232f3e; padding: 0px; border-radius: 4px;">
+							</ul></li>
+						<li><a href="#servicescustom" data-toggle="tab" id="homeMenu"
+							prevent-default="" scroll-to="services" ng-click="getservices()">Services</a></li>
+						<li ng-show="loginCheck == 1"><a href="#reviews"
+							data-toggle="tab" id="homeMenu" prevent-default=""
+							scroll-to="reviews" ng-click="reviews()">Purchased</a></li>
+						<li ng-show="loginCheck == 1 && userType == 'admin'"><a
+							href="#contract" data-toggle="tab" id="homeMenu"
+							prevent-default="" scroll-to="contract" ng-click="contract()">Contract
+								Management</a></li>
+					</ul>
+					<!-- <form class="navbar-form navbar-left" role="search"
+						ng-if="loginCheck == 1">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search">
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form> -->
+					<ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
+						<li ng-if="userEmail != ''"><a role="button"
+							href="#showConsumerCart" data-toggle="tab" id="cart"
+							prevent-default="" scroll-to="showConsumerCart"
+							data-target="#showConsumerCart"
+							ng-click="consumerServiceCart(); consumerCart()"><i
+								class="fa fa-shopping-cart" id="cart"></i> <span class="badge"
+								id="cart">{{cartCount}}</span></a></li>
+						<li ng-show="loginCheck == 0"><a href="#signup" role="button"
+							data-toggle="modal" data-target="#signup"><span
+								class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+						<li ng-show="loginCheck == 0"><a href="#login"
+							data-toggle="modal" role="button" data-target="#login"><span
+								class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+						<li class="dropdown"><a ng-show="loginCheck == 1" href=""
+							class="dropdown-toggle" data-toggle="dropdown">Welcome
+								{{userName}}<span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu" role="menu"
+								style="background-color: #232f3e; border-radius: 5px;">
+
+								<!-- <li class="dropdown-submenu-login"><a class="submenu1" href=""
+									style="color: white;">Services</a>
+									<ul class="submenudrop1 dropdown-menu"
+										style="background-color: #232f3e; border-radius: 5px;">
+										<li><a href="#showServiceUserQuotes" prevent-default=""
+											scroll-to="showServiceUserQuotes"
+											ng-click="serviceUserQuotes(); showServiceUserQuotes = 1"
+											style="color: white;">MyServiceQuotes</a></li>
+										<li><a href="#acceptedServiceQuotes" id="homeMenu"
+											prevent-default="" scroll-to="acceptedQuotes"
+											ng-click="acceptedServiceQuotes(); showAcceptedServiceQuotes = 1; pagination()"
+											style="color: white;">AcceptedServiceQuotes</a></li>
+										<li><a href="#orderedServiceItems" id="homeMenu"
+											prevent-default="" scroll-to="orderedServiceItems"
+											ng-click="orderedServiceItems(); showOrderedServiceItems = 1"
+											style="color: white;">MyServiceOrders</a></li>
+									</ul></li> 
+
+								<li class="divider"></li>-->
+
+								<li class="dropdown-submenu-login"><a class="submenu2"
+									href="" style="color: white;">Quotes & Orders</span></a>
+									<ul class="submenudrop2 dropdown-menu"
+										style="background-color: #232f3e; border-radius: 5px;">
+										<li class="active"><a href="#showUserQuotes"
+											prevent-default="" scroll-to="showUserQuotes"
+											ng-click="userQuotes(); showUserQuotes = 1"
+											style="color: white;">My Quotes</a></li>
+										<li><a href="#acceptedQuotes" id="homeMenu"
+											prevent-default="" scroll-to="acceptedQuotes"
+											ng-click="acceptedQuotes(); showAcceptedQuotes = 1; pagination()"
+											style="color: white;">Accepted Quotes</a></li>
+										<li><a href="#orderedItems" id="homeMenu"
+											prevent-default="" scroll-to="orderedItems"
+											ng-click="orderedItems(); showOrderedItems = 1"
+											style="color: white;">My Orders</a></li>
+									</ul></li>
+								<li class="divider"></li>
+								<li><a href="#myProfile" data-toggle="tab" id="homeMenu"
+									prevent-default="" scroll-to="yProfile"
+									ng-click="getProfile(); showMyProfile = 1"
+									style="color: white;">Profile</a></li>
+
+								<li class="divider"></li>
+								<li><a href="" ng-click="logout()" style="color: white;">Logout</a></li>
+							</ul></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	</div>
+	<div id="scroller" scroll-spy="" data-target="#navPills"
+		ng-if="scroll == 1 && (homeDisplay != 1)" data-scroll-offset="82"
+		style="font-family: Lato; height: 100%">
+		<div id="anyHome" ng-if="homeDisplay != 1"
+			style="padding-top: 50px; padding-left: 0px; height: 100%;">
+			<div ng-include="'views/publicHome.html'" style="height: 100%"></div>
+		</div>
+		<!-- <div ng-if="productDisplay == 1" id="electronics"
+			style="padding-top: 50px;">
+			<div ng-include="'views/electronics.html'"></div>
+		</div>
+		<div ng-if="productDisplay == 1" id="furnitures"
+			style="padding-top: 50px; top: 40%; left: 50%;">
+			<div ng-include="'views/furnitures.html'"></div>
+		</div> -->
+		<div ng-if="serviceDisplay == 1" id=""
+			style="padding-top: 50px; height: 100%; opacity:  0.4; top: 40%; left: 50%; background-color: #f5f5f5; font-family: Helvetica, Arial, serif, Lato;">
+			<div ng-include="'views/servicesCatalog.html'" style="height: 100%"></div>
+		</div>
+	</div>
+	<div id="reviews" scroll-spy="" data-target="#navPills"
+		ng-if="showReviews == 1" data-scroll-offset="92"
+		style="padding-top: 50px; padding-left: 0px; height: 100%">
+		<div ng-include="'views/reviews.html'" style="height: 100%"></div>
+	</div>
+	<div id="servicescustom" scroll-spy="" data-target="#navPills"
+		ng-if="showServicesCustom == 1" data-scroll-offset="92"
+		style="padding-top: 50px; padding-left: 0px; height: 100%">
+		<div ng-include="'views/servicescustom.html'" style="height: 100%"></div>
+	</div>
+	<div id="myOrder" scroll-spy="" data-target="#navPills"
+		ng-if="myorderDisplay == 1 && individualOrderDetail != ''"
+		data-scroll-offset="92"
+		style="padding-top: 50px; padding-left: 0px; height: 100%">
+		<div ng-include="'views/myOrder.html'" style="height: 100%"></div>
+	</div>
+
+	<div id="contract" scroll-spy="" data-target="#navPills"
+		ng-if="showContract == 1" data-scroll-offset="92"
+		style="padding-top: 50px; padding-left: 0px; height: 100%">
+		<div ng-include="'views/contractManagement.html'" style="height: 100%"></div>
+	</div>
+	<!---------------------------------------------  LOGIN MODAL ----------------------------------------->
+	<div class="modal fade" id="login" role="dialog"
+		aria-labelledby="mySmallModalLabel1" style="padding: 20px;">
+		<div class="modal-dialog modal-content modal-sm login-dp"
+			style="padding: 10px;">
+			<div
+				style="text-align: center; background-color: #164b73; color: white; padding: 5px; border-radius: 3px;">
+				<strong>Please sign in</strong>
+			</div>
+			<div class="social-buttons">
+				<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i>Facebook</a>
+				<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i>Twitter</a>
+			</div>
+			<form class="form" role="form" method="post" id="login-nav">
+				<div class="form-group">
+					<label class="sr-only">Email Address</label> <input type="email"
+						class="form-control" placeholder="Email Address" ng-model="email"
+						required="required">
+				</div>
+				<div class="form-group">
+					<label class="sr-only">Password</label> <input type="password"
+						ng-model="password" class="form-control" placeholder="Password"
+						required="required">
+				</div>
+				<div class="form-group">
+					<button ng-click="login()" class="btn btn-primary btn-block"
+						role="button">Sign in</button>
+				</div>
+				<div class="modal-body" ng-if="errorMessage"
+					style="color: red; font-size: 15px; padding: 5px;">{{errorMessage}}</div>
+				<div class="checkbox">
+					<label> <input type="checkbox"> Keep me logged in
+					</label>
+				</div>
+			</form>
+			<div class="bottom text-center"
+				style="padding: 2px; border-radius: 5px;">
+				New here? <a href="#signup" data-toggle="modal"
+					data-target="#signup"><b>Join us</b></a>
+			</div>
+		</div>
+	</div>
+
+	<!---------------------------------------------  SIGNUP MODAL ----------------------------------------->
+	<div class="modal fade" id="signup" role="dialog"
+		aria-labelledby="mySmallModalLabel" style="padding: 20px;">
+		<div class="modal-dialog modal-content modal-sm login-dp signup-body"
+			style="padding: 10px; max-height: calc(100vh - 50px); overflow-y: auto; border-radius: 10px;">
+			<div class="form-group">
+				<div class="col-sm-12">
+					<div
+						style="text-align: center; background-color: #1f4e74; color: white; padding: 5px; border-radius: 3px;">
+						<strong>Please sign up</strong>
+					</div>
+				</div>
+			</div>
+			<br />
+			<form class="form" role="form" method="post" id="login-nav"
+				style="color: grey;">
+				<div class="form-group">
+					<div class="col-sm-6">
+						<label class="control-label">Email Address</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+								type="email" class="form-control" required="required"
+								ng-model="signupEmail">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<label class="control-label">Fullname</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-user fa"
+								aria-hidden="true"></i></span> <input type="text" class="form-control"
+								required="required" ng-model="signupFullname">
+						</div>
+					</div>
+				</div>
+				&nbsp;
+				<div class="form-group">
+					<div class="col-sm-6">
+						<label class="control-label">Password</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+								type="password" class="form-control" required="required"
+								ng-model="signupPassword">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<label class="control-label">Confirm Password</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+								type="password" class="form-control" required="required">
+						</div>
+					</div>
+				</div>
+				&nbsp;
+				<div class="form-group" ng-show="vendor">
+					<div class="col-sm-6">
+						<label class="control-label">Location</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i
+								class="fa fa-location-arrow" aria-hidden="true"></i></span> <input
+								type="text" class="form-control" ng-model="vendorLocation">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<label class="control-label">Category</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-tags"
+								aria-hidden="true"></i></span> <select class="form-control"
+								ng-model="serviceType">
+								<option>Products</option>
+								<option>Services</option>
+								<option>Both</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				&nbsp;
+				<div class="form-group" ng-show="serviceType && vendor">
+					<div class="col-sm-12">
+						<label class="control-label">Type of Products/Services</label>
+						<div class="input-group">
+							<span class="input-group-addon"><i class="fa fa-shield"
+								aria-hidden="true"></i></span> <select class="form-control"
+								ng-model="proser" multiple="multiple">
+								<option
+									ng-if="serviceType == 'Products' || serviceType == 'Both'">Electronics</option>
+								<option
+									ng-if="serviceType == 'Products' || serviceType == 'Both'">Furnitures</option>
+								<option
+									ng-if="serviceType == 'Products' || serviceType == 'Both'">Automobiles</option>
+								<option
+									ng-if="serviceType == 'Services' || serviceType == 'Both'">ResidentialCleaning</option>
+								<option
+									ng-if="serviceType == 'Services' || serviceType == 'Both'">Laundry</option>
+								<option
+									ng-if="serviceType == 'Services' || serviceType == 'Both'">RepairGadgets</option>
+								<option
+									ng-if="serviceType == 'Services' || serviceType == 'Both'">Counselling</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				&nbsp;
+				<div class="form-group">
+					<div class="col-sm-6">
+						<label> <input type="checkbox" ng-model="vendor">
+							Vendor/Service provider?
+						</label>
+					</div>
+				</div>
+				&nbsp;
+				<div class="form-group">
+					<div class="col-sm-10">
+						<label> <input type="checkbox" ng-model="vendorAcceptance">
+							<a target="_blank" href="views/termsAndConditions.html">I
+								agree to the Terms and Conditions</a>
+						</label>
+					</div>
+				</div>
+				&nbsp;
+				<div class="modal-body" ng-if="errorMessage"
+					style="color: red; font-size: 15px; padding: 5px;">{{errorMessage}}</div>
+				&nbsp;
+				<div class="form-group">
+					<div class="col-sm-12">
+						<button type="submit" ng-click="signup()"
+							ng-disabled="!vendorAcceptance" class="btn btn-primary btn-block"
+							href="#signupConfirmation" role="button" data-toggle="modal"
+							data-target="#signupConfirmation">Sign up</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="modal hide fade" id="signupConfirmation" role="dialog"
+		aria-labelledby="mySmallModalLabel" style="padding: 20px;">
+		<div class="modal-dialog modal-content modal-sm login-dp signup-body"
+			style="padding: 10px; background-color: #082d37; color: white;">Thanks
+			for your sign up. Please check your email to confirm.</div>
+		<div>
+			<button type="submit" data-dismiss="modal"
+				class="btn btn-primary btn-block">Ok</button>
+		</div>
+	</div>
+
+
+
+	<!---------------------------------------------  ELECTRONICS PRODUCTS CATALOG ----------------------------------------->
+	<div id="scroller" scroll-spy="" ng-if="showelectronics == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showelectronic" ng-if="showelectronics == 1">
+			<div ng-include="'views/electronicsCatalog.html'"></div>
+		</div>
+	</div>
+	<div id="scroller" scroll-spy="" ng-if="showFurnitures == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showFurniture" ng-if="showFurnitures == 1">
+			<div ng-include="'views/furnituresCatalog.html'"></div>
+		</div>
+	</div>
+
+	<div id="createServices" scroll-spy="" data-target="#navPills"
+		ng-if="showServices == 1" data-scroll-offset="92"
+		style="padding-top: 50px; height: 100%; background-image: url(images/pay1.png)">
+		<div id="createServices" style="padding-top: 0px;"
+			ng-if="showServices == 1">
+			<div ng-include="'views/createService.html'"></div>
+		</div>
+	</div>
+	<!-- 	<div id="scroller" scroll-spy="" ng-show="showConsumerCart == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showConsumerCart" ng-show="showConsumerCart == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/consumerCart.html'" style="height: 100%"></div>
+		</div>
+	</div> -->
+
+	<div id="scroller" scroll-spy="" ng-show="showQuoteConfirmation == 1"
+		data-scroll-offset="82" style="font-family: Lato;">
+		<div id="showQuoteConfirmation" ng-show="showQuoteConfirmation == 1"
+			style="padding-left: 0px; height: 600px; padding-top: 50px;">
+			<div ng-include="'views/consumerCartConfirmation.html'" style=""></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy=""
+		ng-show="showConsumerServiceCart == 1 || showConsumerCart == 1"
+		data-scroll-offset="82"
+		style="font-family: Lato; height: 100%; padding-top: 50px;">
+
+		<div class="check-element animate-show" ng-show="cartChecked"
+			data-target="#showConsumerCart">
+			<button class="btn btn-sm btn-primary" ng-click="cartChecked = 0"
+				aria-label="Toggle ngHide" style="font-family: arial">Flip
+				to Product</button>
+			<br />
+			<div ng-include="'views/consumerServiceCart.html'"
+				style="height: 100%"></div>
+		</div>
+		<div class="check-element animate-show" ng-hide="cartChecked">
+			<button class="btn btn-sm btn-primary" ng-click="cartChecked = 1"
+				aria-label="Toggle ngHide" style="font-family: arial">Flip
+				to Service</button>
+			<br />
+			<div ng-include="'views/consumerCart.html'" style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showMyProfile == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showMyProfile" ng-show="showMyProfile == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/profile.html'" style="height: 100%"></div>
+		</div>
+	</div>
+	<div id="scroller" scroll-spy="" ng-show="showUserQuotes == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showUserQuotes" ng-show="showUserQuotes == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/consumerQuotes.html'" style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showServiceUserQuotes == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showServiceUserQuotes" ng-show="showServiceUserQuotes == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/consumerServiceQuotes.html'"
+				style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showAcceptedQuotes == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showAcceptedQuotes" ng-show="showAcceptedQuotes == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/vendorAcceptedQuotes.html'"
+				style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy=""
+		ng-show="showAcceptedServiceQuotes == 1" data-scroll-offset="82"
+		style="font-family: Lato; height: 100%">
+		<div id="showAcceptedServiceQuotes"
+			ng-show="showAcceptedServiceQuotes == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/vendorAcceptedServiceQuotes.html'"
+				style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showCheckout == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showCheckout" ng-show="showCheckout == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/checkout.html'" style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showServiceCheckout == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showServiceCheckout" ng-show="showServiceCheckout == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/checkoutService.html'" style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showOrderedItems == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showOrderedItems" ng-show="showOrderedItems == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/orderedItems.html'" style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showOrderedServiceItems == 1"
+		data-scroll-offset="82" style="font-family: Lato; height: 100%">
+		<div id="showOrderedServiceItems"
+			ng-show="showOrderedServiceItems == 1"
+			style="padding-left: 0px; height: 100%; padding-top: 50px;">
+			<div ng-include="'views/orderedServiceItems.html'"
+				style="height: 100%"></div>
+		</div>
+	</div>
+
+	<div id="scroller" scroll-spy="" ng-show="showReviewItems == 1"
+		data-scroll-offset="82" style="font-family: Lato; margin-top: 50px;">
+		<div id="showReviewItems" ng-show="showReviewItems == 1">
+			<div ng-include="'views/viewreview.html'"></div>
+		</div>
+	</div>
+
+	<!---------------------------------------------  FOOTER ----------------------------------------->
+	<!-- <footer class="site-footer" style="padding-top: 0px">
+		<div class="container-fluid" id="">
+			<div class="row">
+				<div class="row" id="final-footer"
+					style="background-color: #232f3e;">
+					<div class="col-sm-4"></div>
+					<div class="col-sm-4">
+						<a target="_blank" href="" download><img
+							src="images/astore.png" class="appIcon"
+							class="gatewayStoreImage"></a> <a target="_blank" href=""
+							download><img src="images/Googleplay.png" class="appIcon"></a>
+					</div> 
+					<div class="col-sm-4 text-center">Copyright © 2016 CDC. All
+						Rights Reserved CDC, Bangalore - India</div>
+					<div class="col-sm-4 text-right">
+						<span class="fa-stack fa-lg"> <i
+							class="fa fa-circle text-primary fa-stack-2x"></i> <i
+							class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+						</span> <span class="fa-stack fa-lg"> <i
+							class="fa fa-circle text-info fa-stack-2x"></i> <i
+							class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span> <span class="fa-stack fa-lg"> <i
+							class="fa fa-circle text-danger fa-stack-2x"></i> <i
+							class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer> -->
+
+	<div class="modal fade" id="enlargeImageModal" tabindex="-1"
+		role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<img src="" class="enlargeImageModalSource" style="width: 100%;">
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

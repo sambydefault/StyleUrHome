@@ -1,0 +1,33 @@
+<div class="row"
+	style="padding-left: 20px; padding-right: 20px; height: 100%; font-family: Helvetica, Arial, serif, Lato;"
+	ng-init="getvendorAgreement()" ng-if="vendorAgreementText != null">
+	<span ng-bind-html="vendorAgreementText"></span>
+	<div class="row" ng-if="agreementAcceptanceResponse.agreementDate == null && vendorAgreementText != null">
+		<div class="col-md-4"></div>
+		<div class="col-md-2">
+			<button class="btn btn-sm btn-primary"
+				ng-click="respondToAgreement('Accept')">Accept</button>
+		</div>
+		<div class="col-md-2">
+			<div>
+				<button class="btn btn-sm btn-primary"
+					ng-click="respondToAgreement('Decline')">Decline</button>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>
+	<div>
+		<label>Agreement Accepted On :</label> {{agreementAcceptanceResponse.agreementDate | dateformat}}
+	</div>
+	<div>
+		<label>Agreement Accepted By :</label> {{agreementAcceptanceResponse.agreementDate != null?agreementAcceptanceResponse.vendorEmail: ''}}
+	</div>
+
+</div>
+<div class="row"
+	style="padding-left: 20px; padding-right: 20px; height: 100%; font-family: Helvetica, Arial, serif, Lato; text-align: center"
+	 ng-if="vendorAgreementText == null">
+	 <label style="padding-top: 2%"> Agreement not initiated by the Parent company</label>
+</div>
+<div style="margin-bottom: 0px; bottom: 0px;"
+	ng-include="'views/footer.html'"></div>
